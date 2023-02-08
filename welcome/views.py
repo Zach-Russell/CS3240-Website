@@ -4,4 +4,4 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("Hello World! This is the welcome index.")
+    return HttpResponse("Hello World! This is the team a25's welcome index.")
