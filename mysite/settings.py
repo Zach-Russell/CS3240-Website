@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django'
 ]
 
 MIDDLEWARE = [
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -63,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
             ],
         },
     },
@@ -136,3 +139,10 @@ try:
         django_heroku.settings(locals())
 except ImportError:
     found = False
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.google.GoogleOAuth2'
+]
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '352649337280-qk5q7p74a4v3alhlufjd0inols4tdq9s.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'

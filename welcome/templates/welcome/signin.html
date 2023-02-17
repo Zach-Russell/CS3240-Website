@@ -1,4 +1,6 @@
+<div>
 <form action="{% url 'welcome:signinAction'%}" method="post">
+    {% csrf_token %}
     <fieldset>
         <legend><h1>Login</h1></legend>
         {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}       
@@ -7,4 +9,11 @@
            </fieldset>
     <input type="submit" value="Submit">
     </form>
+    <div>
+        <ul>
+            <li>
+                <a href = "{% url 'social:begin' 'google-oauth2'%}">Signin with google</a>
+            </li>
+        </ul>
+    </div>
 </div>

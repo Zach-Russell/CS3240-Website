@@ -25,7 +25,4 @@ def signin(request):
             'error_message': "Add all fields",
         })
     else:
-        return render(request, 'welcome/signin.html', {
-            'User': User,
-            'message': "Nice",
-        })
+        return HttpResponseRedirect(('/welcome'))
