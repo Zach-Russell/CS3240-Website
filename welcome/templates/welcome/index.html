@@ -1,0 +1,10 @@
+{% load socialaccount %}
+<h1>Welcome to A25's website</h1>
+<div class = "navigation" style = "margin:auto; width:50%; border: 2px solid rgb(35, 190, 175)">
+    <ul class="nav justify-content-end">
+
+        <li class="nav-item">
+            <a href="{% provider_login_url 'google'%}?next=/">Click here to start</a>
+        </li>
+      </ul>
+</div>

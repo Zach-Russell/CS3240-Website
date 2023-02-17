@@ -6,26 +6,7 @@ from django.utils import timezone
 from .models import User
 # Create your views here.
 
-
-def index(request):
-    return HttpResponse("Hello World! This is the team a25's welcome index.")
-
-class SigninView(generic.ListView):
-    model = User
-    template_name = 'welcome/signin.html'
-def signin(request):
-    model = User
-    try:
-        username = request.POST['username']
-        password = request.POST['password']
-    except (KeyError, User.DoesNotExist):
-        # Redisplay the comments voting form.
-        return render(request, 'welcome/signin.html', {
-            'User': User,
-            'error_message': "Add all fields",
-        })
-    else:
-        return render(request, 'welcome/signin.html', {
-            'User': User,
-            'message': "Nice",
-        })
+class IndexView(generic.ListView):
+    template_name = 'welcome/index.html'
+    def get_queryset(self):
+        return "hello"
