@@ -1,3 +1,4 @@
+% load socialaccount %}
 <div>
 <form action="{% url 'welcome:signinAction'%}" method="post">
     {% csrf_token %}
@@ -12,7 +13,7 @@
     <div>
         <ul>
             <li>
-                <a href = "{% url 'social:begin' 'google-oauth2'%}">Signin with google</a>
+                <a href="{% provider_login_url 'google'%}?next=/">Login with Google</a>
             </li>
         </ul>
     </div>
