@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'social_django'
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -80,11 +80,11 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES={
    'default':{
       'ENGINE':'django.db.backends.postgresql_psycopg2',
-      'NAME':'a25',           #need to keep this somewhere secure
-      'USER':'postgres',      #need to keep this somewhere secure
-      'PASSWORD':'a25cs3240', #need to keep this somewhere secure
-      'HOST':'localhost',
-      'PORT':'',
+      'NAME':'ddp7nlsq7mjsed',      
+      'USER':'onkqzmcrphyppc',     
+      'PASSWORD':'c030af09adff2c3be27827b098905bd9a5ca5e0ee7d5f2e4a16d89107820b1ca',
+      'HOST':'ec2-54-160-109-68.compute-1.amazonaws.com',
+      'PORT':'5432',
    }
 }
 
