@@ -149,10 +149,26 @@ AUTHENTICATION_BACKENDS = [
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
-
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_FORMS = {'login': 'welcome.forms.MyCustomLoginForm'}
 
 LOGIN_REDIRECT_URL = '/'
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '352649337280-qk5q7p74a4v3alhlufjd0inols4tdq9s.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APP": {
+            "client_id": '352649337280-qk5q7p74a4v3alhlufjd0inols4tdq9s.apps.googleusercontent.com',
+            "secret": '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',
+            "key": ""
+        },
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        }
+    }
+}
+SOCIALACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
