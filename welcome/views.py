@@ -25,3 +25,24 @@ class studentView(generic.ListView):
     template_name = 'welcome/student.html'
     def get_queryset(self):
         return "student success"
+    
+def finishSignup(request):
+    model = User
+    try:
+        choice = request.POST['type']
+    except (KeyError, User.DoesNotExist):
+        # Redisplay the comments voting form.
+        return render(request, 'polls/comments.html', {
+            'comments': User,
+            'error_message': "Add all fields",
+        })
+    else:
+        user = request.user
+        user.type = choice
+        user.save()
+        url = '/' + user.email
+        if(user.type == 'stu'):
+            url += '/student/'
+        else:
+            url +='/tutor/'
+        return HttpResponseRedirect((url))
