@@ -1,0 +1,3 @@
+Select your type
+<a href="{% url 'welcome:tutor' user.socialaccount_set.all.0.uid %}">Tutor</a>
+<a href="{% url 'welcome:student' user.socialaccount_set.all.0.uid %}">Student</a>
