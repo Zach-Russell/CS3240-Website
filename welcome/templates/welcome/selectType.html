@@ -1,3 +1,14 @@
-Select your type
-<a href="{% url 'welcome:tutor' user.socialaccount_set.all.0.uid %}">Tutor</a>
-<a href="{% url 'welcome:student' user.socialaccount_set.all.0.uid %}">Student</a>
+<div class = "mainDetailsContainer", >
+    <form action="{% url 'welcome:finishSignup'%}" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend><h1>Finish Signing Up!</h1></legend>
+            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}       
+            <select id="type" name="type">
+                <option value="tut">Tutor</option>
+                <option value="stu">Student</option>
+              </select>
+        </fieldset>
+        <input class="btn btn-primary" type="submit" value="Submit">
+        </form>
+</div>
