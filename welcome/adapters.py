@@ -9,4 +9,9 @@ class MyAccountAdapter(DefaultAccountAdapter):
   def get_login_redirect_url(self, request):
       if request.user.type == "":
          return '/googlelogin/type'
-      return '/welcome'
+      url = '/' + request.user.email
+      if(request.user.type == 'stu'):
+         url += '/student/'
+      else:
+         url +='/tutor/'
+      return url
