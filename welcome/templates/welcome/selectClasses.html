@@ -1,0 +1,16 @@
+<div class = "mainDetailsContainer", >
+    <form action="{% url 'welcome:selectClass'%}" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend><h1>Find class</h1></legend>
+            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}       
+            <select id="class" name="class">
+                {% for class in subjects %}
+                    <option value = '{{class.subject}}'>{{class.subject}}</option>
+                {% endfor %}
+              </select>
+            <input type = "text" placeholder = "course number (optional)" name = "crs_num"/>
+        </fieldset>
+        <input class="btn btn-primary" type="submit" value="Submit">
+        </form>
+</div>
