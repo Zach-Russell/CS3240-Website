@@ -40,13 +40,33 @@ class selectClassView(generic.ListView):
     def get_queryset(self):
         return 'select Class success'
 
+def findClass(request):
+    model = User
+    try:
+        crsSubject = request.POST['class']
+    except (KeyError, User.DoesNotExist):
+        return render(request, 'welcome/selectClasses.html', {
+            'comments': User,
+            'error_message': "Add all necessary fields",
+        })
+    url = 'https://sisuva.admin.virginia.edu/psc/ihprd/UVSS/SA/s/WEBLIB_HCX_CM.H_CLASS_SEARCH.FieldFormula.IScript_ClassSearch?institution=UVA01&term=1232&subject=' + crsSubject  + '&page=1'
+    if request.POST['crsNum'] != "":
+        url += '&catalog_nbr=' + request.POST['crsNum']
+    classes = requests.get(url).json()
+    seen = []
+    classesFiltered = []
+    for x in classes:
+        if x['catalog_nbr'] not in seen:
+            seen.append(x['catalog_nbr'])
+            classesFiltered.append(x)
+    return render(request,'welcome/listClasses.html',{'classesFiltered' : classesFiltered})
+
 def finishSignup(request):
     model = User
     try:
         choice = request.POST['type']
     except (KeyError, User.DoesNotExist):
-        # Redisplay the comments voting form.
-        return render(request, 'polls/comments.html', {
+        return render(request, 'welcome/selectType.html', {
             'comments': User,
             'error_message': "Add all fields",
         })

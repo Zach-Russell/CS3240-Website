@@ -1,5 +1,5 @@
-<div class = "mainDetailsContainer", >
-    <form action="{% url 'welcome:selectClass'%}" method="post">
+<div class = "mainSelectClassesContainer", >
+    <form action="{% url 'welcome:findClass'%}" method="post">
         {% csrf_token %}
         <fieldset>
             <legend><h1>Find class</h1></legend>
@@ -9,7 +9,7 @@
                     <option value = '{{class.subject}}'>{{class.subject}}</option>
                 {% endfor %}
               </select>
-            <input type = "text" placeholder = "course number (optional)" name = "crs_num"/>
+            <input type = "text" placeholder = "course number (optional)" name = "crsNum"/>
         </fieldset>
         <input class="btn btn-primary" type="submit" value="Submit">
         </form>

@@ -1,0 +1,19 @@
+<div class = "mainListClassesContainer", >
+            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+            <div class = "listContainer">
+                {% for class in classesFiltered %}
+                <div class = "indivClass">
+                <span>{{class.subject}} {{class.catalog_nbr}}: {{class.descr}}</span>
+                {% if user.type == 'tut'%}
+                <input class="btn btn-primary" type="submit" value="add to tutor">
+                {% else %}
+                <input class="btn btn-primary" type="submit" value="add to schedule">
+                {% endif %}
+
+                </div>
+                {% endfor %}   
+            </div>
+                  
+
+
+</div>
