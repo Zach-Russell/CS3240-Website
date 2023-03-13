@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
+import requests
 from .models import User
 # Create your views here.
 
@@ -25,7 +26,20 @@ class studentView(generic.ListView):
     template_name = 'welcome/student.html'
     def get_queryset(self):
         return "student success"
-    
+
+class selectClassView(generic.ListView):
+    template_name = 'welcome/selectClasses.html'
+
+    def get_context_data(self, **kwargs):
+        url = 'https://sisuva.admin.virginia.edu/psc/ihprd/UVSS/SA/s/WEBLIB_HCX_CM.H_CLASS_SEARCH.FieldFormula.IScript_ClassSearchOptions?institution=UVA01&term=1232'
+        res = requests.get(url)
+        resJson = res.json()
+        context = super().get_context_data(**kwargs)
+        context['subjects'] = resJson['subjects']
+        return context
+    def get_queryset(self):
+        return 'select Class success'
+
 def finishSignup(request):
     model = User
     try:
