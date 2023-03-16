@@ -113,11 +113,11 @@ def finishSignup(request):
 #     url = '/' + user.email + '/tutor/'
 #     return HttpResponseRedirect(url)
 
-# def findClassByName(request):
-#     courseName = request.POST['crsName']
-#     apiUrl = 'https://sisuva.admin.virginia.edu/psc/ihprd/UVSS/SA/s/WEBLIB_HCX_CM.H_CLASS_SEARCH.FieldFormula.IScript_ClassSearch?institution=UVA01&term=1232&keyword=' + courseName
-#     courses = requests.get(apiUrl).json()
-#     res = []
-#     for course in courses:
-#         res.append(course)
-#     return render(request,'welcome/listClasses.html',{'classesFiltered' : res})
+def findClassByName(request):
+    courseName = request.POST['crsName']
+    apiUrl = 'https://sisuva.admin.virginia.edu/psc/ihprd/UVSS/SA/s/WEBLIB_HCX_CM.H_CLASS_SEARCH.FieldFormula.IScript_ClassSearch?institution=UVA01&term=1232&keyword=' + courseName
+    courses = requests.get(apiUrl).json()
+    res = []
+    for course in courses:
+        res.append(course)
+    return render(request,'welcome/listClasses.html',{'classesFiltered' : res})
