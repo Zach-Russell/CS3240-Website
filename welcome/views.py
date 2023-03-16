@@ -103,3 +103,21 @@ def finishSignup(request):
         else:
             url +='/tutor/'
         return HttpResponseRedirect((url))
+
+def tutorSignUp(request, subject, catalog_nbr, descr):
+    model = User
+    identifier = subject + ' ' + catalog_nbr + ': ' + descr
+    if(identifier not in model.classes_signed_up):
+        model.classes_signed_up.add(identifier)
+    user = request.user
+    url = '/' + user.email + '/tutor/'
+    return HttpResponseRedirect(url)
+
+def findClassByName(request):
+    courseName = request.POST['crsName']
+    apiUrl = 'https://sisuva.admin.virginia.edu/psc/ihprd/UVSS/SA/s/WEBLIB_HCX_CM.H_CLASS_SEARCH.FieldFormula.IScript_ClassSearch?institution=UVA01&term=1232&keyword=' + courseName
+    courses = requests.get(apiUrl).json()
+    res = []
+    for course in courses:
+        res.append(course)
+    return render(request,'welcome/listClasses.html',{'classesFiltered' : res})

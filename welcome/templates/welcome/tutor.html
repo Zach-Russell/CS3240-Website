@@ -65,6 +65,19 @@
 </div>
 {% endblock %}
 
+<div>
+  {% if user.classes_signed_up %}
+    <h6>List of classes currently signed up to tutor:</h6>
+    <ul>
+    {% for class in user.classes_signed_up %}
+    <li>{{ class }}</li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <h6>Not currently signed up to tutor any classes</h6>
+  {% endif %}
+</div>
+
 
 <!-- FOOTER -->
 <footer class="footer fixed-bottom bg-dark text-white">
