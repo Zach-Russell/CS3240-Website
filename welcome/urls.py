@@ -10,4 +10,5 @@ urlpatterns = [
     path('finishSignup/', views.finishSignup, name='finishSignup'),
     path('selectClass/', views.selectClassView.as_view(), name = 'selectClass'),
     path('findClass/', views.findClass, name='findClass'),
+    path('<int:user_id>/addToSchedule/', views.addToSchedule, name='addToSchedule')
 ]

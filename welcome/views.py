@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 import requests
-from .models import User
+from .models import User, Schedule
 # Create your views here.
 
 class IndexView(generic.ListView):
@@ -20,7 +20,8 @@ class selectTypeView(generic.ListView):
 class tutorView(generic.ListView):
     template_name = 'welcome/tutor.html'
     def get_queryset(self):
-        return "tutor success"
+        return "tutor_success"
+
 
 class studentView(generic.ListView):
     template_name = 'welcome/student.html'
@@ -60,6 +61,28 @@ def findClass(request):
             seen.append(x['catalog_nbr'])
             classesFiltered.append(x)
     return render(request,'welcome/listClasses.html',{'classesFiltered' : classesFiltered})
+
+def addToSchedule(request, user_id):
+    if request.user.type == 'tut':
+        user = User.objects.get(pk = user_id)
+        try:
+            schedule = Schedule.objects.get(User = user)
+        except Schedule.DoesNotExist:
+            schedule = Schedule(schedule = [], User = user)
+            schedule.save()
+        list = request.POST.getlist('class')
+        for x in list:
+            schedule.schedule.append(x)
+            schedule.save()            
+        url = '/' + user.email
+        if(user.type == 'stu'):
+            url += '/student/'
+        else:
+            url +='/tutor/'
+        return HttpResponseRedirect((url))
+    else:
+        schedules = Schedule.objects.filter(schedule__icontains=request.POST['class'])
+        return render(request,'welcome/listTutors.html',{'schedules' : schedules})
 
 def finishSignup(request):
     model = User
