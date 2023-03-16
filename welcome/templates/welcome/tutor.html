@@ -25,7 +25,7 @@
             <a class="nav-link" href="">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">Schedule Tutoring</a>
+            <a class="nav-link" href="/welcome/selectClass/">Add Tutoring Classes</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="">About</a>
@@ -54,8 +54,29 @@
 
 <div class="row">
   <h1>Hello, this {{user.first_name}}'s tutor view!</h1>
+  <div style = "justify-content: center;">
+  <h2>This is {{user.first_name}}'s current tutor classes</h2>
+  <ul>
+    {% for class in user.schedule_set.first.schedule %}
+    <li>{{class}}</li>
+    {% endfor %}
+  </ul>
+</div>
 </div>
 {% endblock %}
+
+<div>
+  {% if user.classes_signed_up %}
+    <h6>List of classes currently signed up to tutor:</h6>
+    <ul>
+    {% for class in user.classes_signed_up %}
+    <li>{{ class }}</li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <h6>Not currently signed up to tutor any classes</h6>
+  {% endif %}
+</div>
 
 
 <!-- FOOTER -->

@@ -1,8 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from .models import User
+from .models import User, Schedule
 
+class ScheduleInLine(admin.TabularInline):
+    model = Schedule
 
 class UserAdmin(BaseUserAdmin):
     fieldsets = (
@@ -15,6 +17,7 @@ class UserAdmin(BaseUserAdmin):
             'user_permissions',
         )}),
     )
+    inlines = [ScheduleInLine]
 
     list_display = ('email', 'first_name','last_name','type', 'is_staff', 'last_login')
     search_fields = ('email',)

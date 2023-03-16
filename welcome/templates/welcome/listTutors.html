@@ -1,0 +1,9 @@
+<div class = "mainListClassesContainer", >
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <div class = "listContainer">
+        
+        {% for schedule in schedules %}
+        <p>{{schedule.User.first_name}} {{schedule.User.last_name}} | email: {{schedule.User.email}}</p>          
+        {% endfor %}    
+    </div>
+</div>

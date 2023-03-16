@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser,    BaseUserManager, PermissionsMixin
 from django.db import models
 from django.utils import timezone
+from django.contrib.postgres.fields import ArrayField
 
 
 class UserManager(BaseUserManager):
@@ -43,6 +44,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_login = models.DateTimeField(null=True, blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     type = models.CharField(max_length=3, choices=[('tut', 'tutor'),('stu', 'student')], default = "")
+    classes_signed_up = set()
 
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = 'email'
@@ -52,3 +54,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_absolute_url(self):
         return "/users/%i/" % (self.pk)
+  
+class Schedule(models.Model):
+    User = models.ForeignKey(User, on_delete=models.CASCADE)
+    schedule = ArrayField(models.CharField(max_length=20, blank = True))

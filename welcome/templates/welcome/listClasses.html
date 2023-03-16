@@ -1,0 +1,22 @@
+<div class = "mainListClassesContainer", >
+            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+            <div class = "listContainer">
+                
+                {% for class in classesFiltered %}
+                <form action="{% url 'welcome:addToSchedule' user.id %}" method="post"> 
+                {% csrf_token %}
+                <input type = "checkbox" name = "class" value = '{{class.subject}} {{class.catalog_nbr}}'>
+                <label for="class{{ forloop.counter }}">{{class.subject}} {{class.catalog_nbr}}: {{class.descr}}</label><br>               
+                {% endfor %}    
+            </div>
+            {% if user.type == 'tut'%}
+            <input class="btn btn-primary" type="submit" value="add to tutor"> 
+            {% else %}
+            <input class="btn btn-primary" type="submit" value="find tutor">  
+        </form>    
+            {% endif %}
+</div>
+
+<!-- TODO: change each class into a form and make it a post method on click it should find schedule of user and add the class name to the tutor's schedule
+For students, you should be able to find tutor based on class name (look at how to query postgres in django to find tutor name based on schedule model)
+-->
