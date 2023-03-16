@@ -10,10 +10,5 @@ urlpatterns = [
     path('finishSignup/', views.finishSignup, name='finishSignup'),
     path('selectClass/', views.selectClassView.as_view(), name = 'selectClass'),
     path('findClass/', views.findClass, name='findClass'),
-<<<<<<< HEAD
     path('<int:user_id>/addToSchedule/', views.addToSchedule, name='addToSchedule')
-=======
-    path('<str:subject>/<str:catalog_nbr>/<str:descr>/tutorSignUp/', views.tutorSignUp, name='tutorSignUp'),
-    path('findClassByName/', views.findClassByName, name='findClassByName')
->>>>>>> db4a9ada5c44a2e1dced1427bf0d79e06efec6f0
 ]
