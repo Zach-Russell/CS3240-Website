@@ -5,13 +5,16 @@
                 <div class = "indivClass">
                 <span>{{class.subject}} {{class.catalog_nbr}}: {{class.descr}}</span>
                 {% if user.type == 'tut'%}
-                <input class="btn btn-primary" type="submit" value="add to tutor">
+                <form action="{% url 'welcome:tutorSignUp' class.subject class.catalog_nbr class.descr %}" method="get">
+                    {% csrf_token %}
+                   <input class="btn btn-primary" type="submit" value="add to tutor">
+                </form>
                 {% else %}
                 <input class="btn btn-primary" type="submit" value="add to schedule">
                 {% endif %}
 
                 </div>
-                {% endfor %}   
+                {% endfor %}    
             </div>
                   
 

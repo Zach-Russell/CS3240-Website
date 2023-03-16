@@ -43,6 +43,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_login = models.DateTimeField(null=True, blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     type = models.CharField(max_length=3, choices=[('tut', 'tutor'),('stu', 'student')], default = "")
+    classes_signed_up = set()
 
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = 'email'
