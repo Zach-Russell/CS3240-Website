@@ -104,14 +104,14 @@ def finishSignup(request):
             url +='/tutor/'
         return HttpResponseRedirect((url))
 
-def tutorSignUp(request, subject, catalog_nbr, descr):
-    model = User
-    identifier = subject + ' ' + catalog_nbr + ': ' + descr
-    if(identifier not in model.classes_signed_up):
-        model.classes_signed_up.add(identifier)
-    user = request.user
-    url = '/' + user.email + '/tutor/'
-    return HttpResponseRedirect(url)
+# def tutorSignUp(request, subject, catalog_nbr, descr):
+#     model = User
+#     identifier = subject + ' ' + catalog_nbr + ': ' + descr
+#     if(identifier not in model.classes_signed_up):
+#         model.classes_signed_up.add(identifier)
+#     user = request.user
+#     url = '/' + user.email + '/tutor/'
+#     return HttpResponseRedirect(url)
 
 def findClassByName(request):
     courseName = request.POST['crsName']
