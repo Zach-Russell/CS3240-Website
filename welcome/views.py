@@ -22,7 +22,6 @@ class tutorView(generic.ListView):
     def get_queryset(self):
         return "tutor_success"
 
-
 class studentView(generic.ListView):
     template_name = 'welcome/student.html'
     def get_queryset(self):
@@ -40,6 +39,11 @@ class selectClassView(generic.ListView):
         return context
     def get_queryset(self):
         return 'select Class success'
+
+class selectTimingsView(generic.ListView):
+    template_name = 'welcome/selectTimings.html'
+    def get_queryset(self):
+        return "timings success"
 
 def findClass(request):
     model = User
@@ -121,3 +125,12 @@ def findClassByName(request):
     for course in courses:
         res.append(course)
     return render(request,'welcome/listClasses.html',{'classesFiltered' : res})
+
+def confirmTimings(request, user_id):
+    user = User.objects.get(pk=user_id)
+    url = '/' + user.email
+    if(user.type == 'stu'):
+        url += '/student/'
+    else:
+        url +='/tutor/'
+    return HttpResponseRedirect((url))
