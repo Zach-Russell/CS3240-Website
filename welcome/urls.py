@@ -13,5 +13,5 @@ urlpatterns = [
     path('<int:user_id>/addToSchedule/', views.addToSchedule, name='addToSchedule'),
     path('findClassByName/', views.findClassByName, name='findClassByName'),
     path('selectTimings/', views.selectTimings, name='selectTimings'),
-    path('<int:user_id>/confirmTimings/', views.confirmTimings, name='confirmTimings')
+    path('<int:user_id>/<str:course_name>/<str:course_number>/confirmTimings/', views.confirmTimings, name='confirmTimings')
 ]

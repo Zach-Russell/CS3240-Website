@@ -126,13 +126,22 @@ def selectTimings(request):
     spl = clas.split(' ')
     return render(request, 'welcome/selectTimings.html', {'course_name' : spl[0], 'course_number' : spl[1]})
 
-def confirmTimings(request, user_id):
+def confirmTimings(request, user_id, course_name, course_number):
     user = User.objects.get(pk=user_id)
     list = request.POST.getlist('class')
     for timing in list:
         spl = timing.split(' ')
+        print(spl)
         day = spl[0]
         time = spl[1] + spl[2]
+        course_time = course_name + ' ' + course_number + ' ' + day + ' ' + time
+        try:
+            schedule = Schedule.objects.get(User = user)
+        except Schedule.DoesNotExist:
+            schedule = Schedule(schedule = [], User = user)
+            schedule.save()
+        schedule.schedule.append(course_time)
+        schedule.save()
     url = '/' + user.email
     if(user.type == 'stu'):
         url += '/student/'

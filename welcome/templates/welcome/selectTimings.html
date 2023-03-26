@@ -1,6 +1,6 @@
 <h2>Select timings to tutor {{course_name}} {{course_number}}</h2>
 
-<form action="{% url 'welcome:confirmTimings' user.id %}" method="post">
+<form action= "{% url 'welcome:confirmTimings' user.id course_name course_number %}" method="post">
     {% csrf_token %}
     <table cellspacing="1" cellpadding="1" border="1">
         <tr>
