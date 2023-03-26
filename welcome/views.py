@@ -40,11 +40,6 @@ class selectClassView(generic.ListView):
     def get_queryset(self):
         return 'select Class success'
 
-class selectTimingsView(generic.ListView):
-    template_name = 'welcome/selectTimings.html'
-    def get_queryset(self):
-        return "timings success"
-
 def findClass(request):
     model = User
     try:
@@ -126,8 +121,18 @@ def findClassByName(request):
         res.append(course)
     return render(request,'welcome/listClasses.html',{'classesFiltered' : res})
 
+def selectTimings(request):
+    clas = request.POST.getlist('class')[0]
+    spl = clas.split(' ')
+    return render(request, 'welcome/selectTimings.html', {'course_name' : spl[0], 'course_number' : spl[1]})
+
 def confirmTimings(request, user_id):
     user = User.objects.get(pk=user_id)
+    list = request.POST.getlist('class')
+    for timing in list:
+        spl = timing.split(' ')
+        day = spl[0]
+        time = spl[1] + spl[2]
     url = '/' + user.email
     if(user.type == 'stu'):
         url += '/student/'

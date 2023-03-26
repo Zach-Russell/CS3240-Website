@@ -1,3 +1,5 @@
+<h2>Select timings to tutor {{course_name}} {{course_number}}</h2>
+
 <form action="{% url 'welcome:confirmTimings' user.id %}" method="post">
     {% csrf_token %}
     <table cellspacing="1" cellpadding="1" border="1">
@@ -14,266 +16,266 @@
 
         <tr>
             <th>12:00 AM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 12:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 12:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 12:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 12:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 12:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 12:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 12:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 12:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 12:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 12:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 12:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 12:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 12:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 12:00 AM'></td>
         </tr>
 
         <tr>
             <th>1:00 AM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 1:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 1:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 1:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 1:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 1:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 1:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 1:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 1:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 1:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 1:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 1:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 1:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 1:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 1:00 AM'></td>
         </tr>
 
         <tr>
             <th>2:00 AM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 2:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 2:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 2:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 2:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 2:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 2:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 2:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 2:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 2:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 2:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 2:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 2:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 2:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 2:00 AM'></td>
         </tr>
 
         <tr>
             <th>3:00 AM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 3:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 3:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 3:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 3:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 3:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 3:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 3:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 3:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 3:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 3:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 3:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 3:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 3:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 3:00 AM'></td>
         </tr>
 
         <tr>
             <th>4:00 AM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 4:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 4:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 4:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 4:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 4:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 4:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 4:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 4:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 4:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 4:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 4:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 4:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 4:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 4:00 AM'></td>
         </tr>
 
         <tr>
             <th>5:00 AM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 5:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 5:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 5:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 5:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 5:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 5:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 5:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 5:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 5:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 5:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 5:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 5:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 5:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 5:00 AM'></td>
         </tr>
 
         <tr>
             <th>6:00 AM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 6:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 6:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 6:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 6:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 6:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 6:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 6:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 6:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 6:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 6:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 6:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 6:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 6:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 6:00 AM'></td>
         </tr>
 
         <tr>
             <th>7:00 AM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 7:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 7:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 7:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 7:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 7:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 7:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 7:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 7:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 7:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 7:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 7:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 7:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 7:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 7:00 AM'></td>
         </tr>
 
         <tr>
             <th>8:00 AM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 8:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 8:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 8:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 8:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 8:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 8:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 8:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 8:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 8:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 8:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 8:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 8:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 8:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 8:00 AM'></td>
         </tr>
 
         <tr>
             <th>9:00 AM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 9:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 9:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 9:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 9:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 9:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 9:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 9:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 9:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 9:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 9:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 9:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 9:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 9:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 9:00 AM'></td>
         </tr>
 
         <tr>
             <th>10:00 AM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 10:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 10:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 10:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 10:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 10:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 10:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 10:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 10:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 10:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 10:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 10:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 10:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 10:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 10:00 AM'></td>
         </tr>
 
         <tr>
             <th>11:00 AM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 11:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 11:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 11:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 11:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 11:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 11:00 AM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 11:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 11:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 11:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 11:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 11:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 11:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 11:00 AM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 11:00 AM'></td>
         </tr>
 
         <tr>
             <th>12:00 PM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 12:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 12:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 12:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 12:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 12:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 12:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 12:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 12:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 12:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 12:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 12:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 12:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 12:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 12:00 PM'></td>
         </tr>
 
         <tr>
             <th>1:00 PM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 1:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 1:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 1:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 1:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 1:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 1:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 1:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 1:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 1:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 1:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 1:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 1:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 1:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 1:00 PM'></td>
         </tr>
 
         <tr>
             <th>2:00 PM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 2:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 2:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 2:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 2:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 2:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 2:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 2:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 2:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 2:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 2:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 2:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 2:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 2:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 2:00 PM'></td>
         </tr>
 
         <tr>
             <th>3:00 PM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 3:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 3:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 3:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 3:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 3:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 3:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 3:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 3:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 3:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 3:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 3:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 3:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 3:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 3:00 PM'></td>
         </tr>
 
         <tr>
             <th>4:00 PM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 4:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 4:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 4:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 4:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 4:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 4:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 4:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 4:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 4:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 4:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 4:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 4:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 4:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 4:00 PM'></td>
         </tr>
 
         <tr>
             <th>5:00 PM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 5:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 5:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 5:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 5:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 5:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 5:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 5:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 5:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 5:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 5:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 5:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 5:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 5:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 5:00 PM'></td>
         </tr>
 
         <tr>
             <th>6:00 PM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 6:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 6:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 6:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 6:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 6:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 6:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 6:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 6:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 6:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 6:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 6:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 6:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 6:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 6:00 PM'></td>
         </tr>
 
         <tr>
             <th>7:00 PM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 7:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 7:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 7:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 7:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 7:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 7:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 7:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 7:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 7:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 7:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 7:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 7:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 7:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 7:00 PM'></td>
         </tr>
 
         <tr>
             <th>8:00 PM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 8:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 8:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 8:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 8:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 8:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 8:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 8:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 8:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 8:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 8:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 8:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 8:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 8:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 8:00 PM'></td>
         </tr>
 
         <tr>
             <th>9:00 PM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 9:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 9:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 9:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 9:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 9:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 9:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 9:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 9:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 9:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 9:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 9:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 9:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 9:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 9:00 PM'></td>
         </tr>
 
         <tr>
             <th>10:00 PM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 10:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 10:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 10:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 10:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 10:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 10:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 10:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 10:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 10:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 10:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 10:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 10:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 10:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 10:00 PM'></td>
         </tr>
 
         <tr>
             <th>11:00 PM</th>
-            <td style="text-align:center"><input type = "checkbox" value='Sunday 11:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Monday 11:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Tuesday 11:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Wednesday 11:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Thursday 11:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Friday 11:00 PM'></td>
-            <td style="text-align:center"><input type = "checkbox" value='Saturday 11:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Sunday 11:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Monday 11:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Tuesday 11:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Wednesday 11:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Thursday 11:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Friday 11:00 PM'></td>
+            <td style="text-align:center"><input type = "checkbox" name="class" value='Saturday 11:00 PM'></td>
         </tr>
 
     </table>
