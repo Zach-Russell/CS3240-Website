@@ -1,0 +1,91 @@
+
+/*-------INTRO SECTION------------*/
+
+/* body {
+    color: #828bb2;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.625em;
+    position: relative; } */
+  
+.intro-title {
+    min-height: 100vh;
+    /* width: 100%; */ 
+    background-image: linear-gradient(to right, rgba(5, 117, 230, 0.5), rgba(0, 242, 96, 0.5)), url("images/tutor-background.jpeg");
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+.text-box {
+    width: 90%;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.text-box h1 {
+    font-size: 62px;
+}
+.text-box p {
+    margin: 10px 0 40px;
+    font-size: 20px;
+    color: #fff;
+}
+
+ /*---------------------------------------
+      CONTACTS             
+  -----------------------------------------*/
+
+  #contact {
+    background: #00F260;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0575E6, #00F260);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0575E6, #00F260); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+
+  #contact .section-title h2 {
+    color: #ffffff;
+  }
+
+  .google-map {
+    border-radius: 100%;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+
+  .google-map iframe {
+    border: 0;
+    width: 300px;
+    height: 300px;
+  }
+
+  #contact .form-control {
+    border: 0;
+    border-radius: 5px;
+    box-shadow: none;
+    color: rgba(20,20,20,0.5);
+    font-size: 14px;
+    font-weight: normal;
+    margin-bottom: 15px;
+    padding-left: 8px;
+  }
+
+  #contact input,
+  #contact select {
+    height: 55px;
+  }
+
+  #contact select {
+    color: rgba(20,20,20,0.5);
+  }
+
+  #contact input[type='submit'] {
+    background: #ce3232;
+    border-radius: 100px;
+    color: #ffffff;
+    font-weight: 500;
+  }
