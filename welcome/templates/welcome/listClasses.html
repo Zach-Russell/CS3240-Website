@@ -3,7 +3,7 @@
             <div class = "listContainer">
                 
                 {% for class in classesFiltered %}
-                <form action="{% url 'welcome:selectTimings' %}" method="post"> 
+                <form action="{% url 'welcome:addToSchedule' user.id %}" method="post"> 
                 {% csrf_token %}
                 <input type = "radio" name = "class" value = '{{class.subject}} {{class.catalog_nbr}}'>
                 <label for="class{{ forloop.counter }}">{{class.subject}} {{class.catalog_nbr}}: {{class.descr}}</label><br>               
