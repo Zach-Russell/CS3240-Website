@@ -3,14 +3,14 @@
             <div class = "listContainer">
                 
                 {% for class in classesFiltered %}
-                <form action="{% url 'welcome:addToSchedule' user.id %}" method="post"> 
+                <form action="{% url 'welcome:selectTimings' %}" method="post"> 
                 {% csrf_token %}
-                <input type = "checkbox" name = "class" value = '{{class.subject}} {{class.catalog_nbr}}'>
+                <input type = "radio" name = "class" value = '{{class.subject}} {{class.catalog_nbr}}'>
                 <label for="class{{ forloop.counter }}">{{class.subject}} {{class.catalog_nbr}}: {{class.descr}}</label><br>               
                 {% endfor %}    
             </div>
             {% if user.type == 'tut'%}
-            <input class="btn btn-primary" type="submit" value="add to tutor"> 
+            <input class="btn btn-primary" type="submit" value="select timings"> 
             {% else %}
             <input class="btn btn-primary" type="submit" value="find tutor">  
         </form>    
