@@ -81,8 +81,9 @@ def addToSchedule(request, user_id):
             url +='/tutor/'
         return HttpResponseRedirect((url))
     else:
+        classReq = request.POST['class']
         schedules = Schedule.objects.filter(schedule__icontains=request.POST['class'])
-        return render(request,'welcome/listTutors.html',{'schedules' : schedules})
+        return render(request,'welcome/listTutors.html',{'schedules' : schedules, 'classReq': classReq})
 
 def finishSignup(request):
     model = User
