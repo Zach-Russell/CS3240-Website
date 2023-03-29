@@ -1,0 +1,14 @@
+<div class = "mainListTutorTimesContainer", >
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <div class = "listContainer">
+        <h2>request one of {{tutorUser.first_name}}'s time</h2>
+        {% for times in tutorAvailableTimes %}
+        <form action="{% url 'welcome:requestTutorTime' user.id tutorUser.id course %}" method="post"> 
+        {% csrf_token %}
+        <input type = "radio" name = "tutorTime" value = '{{times}}'>
+        <label for="times{{ forloop.counter }}">{{times}}</label><br>               
+        {% endfor %}    
+    </div>
+    <input class="btn btn-primary" type="submit" value=" make request">  
+</form>    
+</div>

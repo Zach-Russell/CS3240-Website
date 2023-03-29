@@ -18,15 +18,21 @@
 <div class = "mainListClassesContainer", >
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
     <h1>These are the available tutors for {{classReq}}</h1>
+    <form action="{% url 'welcome:viewTutorTime' user.id %}" method="post"> 
+    {% csrf_token %}
     <div class = "listContainer">
         <table>
             <tr>
+              <td>Select</td>
               <th>Name</th>
               <th>Email</th>
               <th>Times Available</th>
             </tr>
         {% for schedule in schedules %}
         <tr>
+          <td>
+            <input type = "radio" name = "tutor" value = '{{schedule.User.id}} {{classReq}}'>
+          </td>
             <td>
                 {{schedule.User.first_name}} {{schedule.User.last_name}}
             </td>
@@ -34,11 +40,17 @@
                 {{schedule.User.email}}
             </td>
             <td>
-              {% for timings in schedule.tutorTimings %}
-                {{timings}}  
-              {% endfor %}
+              <ul style = "list-style-type: none;">
+                {% for timings in schedule.tutorTimings %}
+                <li>
+                  {{timings}}  
+                </li>
+                {% endfor %}
+              </ul>
             </td>
-        </tr>  
-        {% endfor %}    
+        </tr> 
+        {% endfor %}   
     </div>
+    <input class="btn btn-primary" type="submit" value="request"> 
+  </form> 
 </div>

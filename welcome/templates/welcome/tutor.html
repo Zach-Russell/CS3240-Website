@@ -62,6 +62,36 @@
 <div class="row">
   <h1>Hello, this {{user.first_name}}'s tutor view!</h1>
   <div style = "justify-content: center;">
+  <h2>This is {{user.first_name}}'s current request</h2>
+    <ul style = "list-style-type: none;">
+
+        {% for request in requests_list %}     
+        {% if user.id == request.tutor.id %} 
+        {% if request.accepted == '' %} 
+        <form action="{% url 'welcome:requestChoice' request.id%}" method="post"> 
+          {% csrf_token %}
+        <div style = "border-style: solid;">
+        <li>{{request.student.first_name}} {{request.student.last_name}} has requested a tutor for the class {{request.course}} on {{request.time}}</li>
+        <input class="btn btn-primary" type="submit" value="accept" name = "choice">  
+        <input class="btn btn-primary" type="submit" value="decline" name = "choice">  
+      </div>
+      </form>
+      {% endif %}
+      {% endif %}
+        {% endfor %} 
+    </ul>
+    <h2>accepted requests</h2>
+    {% for request in requests_list %}     
+    {% if user.id == request.tutor.id %} 
+    {% if request.accepted == 'acc' %} 
+    <ul style = "list-style-type: none;">
+    <li>
+      {{request.student.first_name}} {{request.student.last_name}} for the class {{request.course}} on {{request.time}}
+    </li></ul>
+    
+    {% endif %}
+    {% endif %}
+    {% endfor %}
   <h2>This is {{user.first_name}}'s current tutor classes</h2>
   <ul>
     {% for class in user.schedule_set.first.schedule %}
@@ -78,3 +108,5 @@
 </div>
 </div>
 {% endblock %}
+
+
