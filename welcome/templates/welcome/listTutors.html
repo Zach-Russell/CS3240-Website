@@ -34,7 +34,9 @@
                 {{schedule.User.email}}
             </td>
             <td>
-
+              {% for timings in schedule.tutorTimings %}
+                {{timings}}  
+              {% endfor %}
             </td>
         </tr>  
         {% endfor %}    
