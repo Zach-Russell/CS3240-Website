@@ -58,3 +58,4 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Schedule(models.Model):
     User = models.ForeignKey(User, on_delete=models.CASCADE)
     schedule = ArrayField(models.CharField(max_length=50, blank = True))
+    tutorTimings = ArrayField(models.CharField(max_length=50, blank = True), default = "{}")

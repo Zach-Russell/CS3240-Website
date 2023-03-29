@@ -1,9 +1,44 @@
+    <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 75%;
+    }
+    
+    td, th {
+      border: 1px solid #979797;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
 <div class = "mainListClassesContainer", >
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <h1>These are the available tutors for {{classReq}}</h1>
     <div class = "listContainer">
-        
+        <table>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Times Available</th>
+            </tr>
         {% for schedule in schedules %}
-        <p>{{schedule.User.first_name}} {{schedule.User.last_name}} | email: {{schedule.User.email}}</p>          
+        <tr>
+            <td>
+                {{schedule.User.first_name}} {{schedule.User.last_name}}
+            </td>
+            <td>
+                {{schedule.User.email}}
+            </td>
+            <td>
+              {% for timings in schedule.tutorTimings %}
+                {{timings}}  
+              {% endfor %}
+            </td>
+        </tr>  
         {% endfor %}    
     </div>
 </div>
