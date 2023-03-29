@@ -122,12 +122,13 @@ def findClassByName(request):
         res.append(course)
     return render(request,'welcome/listClasses.html',{'classesFiltered' : res})
 
-def selectTimings(request):
-    clas = request.POST.getlist('class')[0]
-    spl = clas.split(' ')
-    return render(request, 'welcome/selectTimings.html', {'course_name' : spl[0], 'course_number' : spl[1]})
+class selectTimingsView(generic.ListView):
+    template_name = 'welcome/selectTimings.html'
+    def get_queryset(self):
+        return "timings success"
 
-def confirmTimings(request, user_id, course_name, course_number):
+
+def confirmTimings(request, user_id):
     user = User.objects.get(pk=user_id)
     list = request.POST.getlist('class')
     for timing in list:
@@ -135,13 +136,13 @@ def confirmTimings(request, user_id, course_name, course_number):
         print(spl)
         day = spl[0]
         time = spl[1] + spl[2]
-        course_time = course_name + ' ' + course_number + ' ' + day + ' ' + time
+        course_time = day + ' ' + time
         try:
             schedule = Schedule.objects.get(User = user)
         except Schedule.DoesNotExist:
             schedule = Schedule(schedule = [], User = user)
             schedule.save()
-        schedule.schedule.append(course_time)
+        schedule.tutorTimings.append(course_time)
         schedule.save()
     url = '/' + user.email
     if(user.type == 'stu'):
