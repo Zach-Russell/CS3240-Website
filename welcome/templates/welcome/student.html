@@ -57,6 +57,40 @@
 
 <div class="row">
   <h1>Hello, this {{user.first_name}}'s student view!</h1>
+  <div style = "justify-content: center;">
+    <h2>This is {{user.first_name}}'s current request</h2>
+      <ul style = "list-style-type: none;">
+          {% for request in requests_list %}     
+          {% if user.id == request.student.id %} 
+          {% if request.accepted == '' %} 
+          <li>{{request.student.first_name}} {{request.student.last_name}} has requested a tutor for the class {{request.course}} on {{request.time}}</li> 
+        {% endif %}
+        {% endif %}
+          {% endfor %} 
+      </ul>
+      <h2>accepted requests</h2>
+      {% for request in requests_list %}     
+      {% if user.id == request.student.id %} 
+      {% if request.accepted == 'acc' %} 
+      <ul style = "list-style-type: none;">
+      <li>
+        {{request.student.first_name}} {{request.student.last_name}} for the class {{request.course}} on {{request.time}}
+      </li></ul>
+       {% endif %}
+      {% endif %}
+      {% endfor %}
+      <h2>declined requests</h2>
+      {% for request in requests_list %}     
+      {% if user.id == request.student.id %} 
+      {% if request.accepted == 'dec' %} 
+      <ul style = "list-style-type: none;">
+      <li>
+        {{request.student.first_name}} {{request.student.last_name}} for the class {{request.course}} on {{request.time}}
+      </li></ul>
+       {% endif %}
+      {% endif %}
+      {% endfor %}
+  </div>
 </div>
 {% endblock %}
 
