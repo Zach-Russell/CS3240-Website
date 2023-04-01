@@ -49,9 +49,8 @@
     </div>
   </div>
 </nav>
-
 {% block content %}
-<div class = "mainListClassesContainer", >
+<div class = "mainListClassesContainer", style = "margin-left: 30px; margin-top: 15px;">
             {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
             <div class = "listContainer">
                 
@@ -65,7 +64,7 @@
             {% if user.type == 'tut'%}
             <input class="btn btn-primary" type="submit" value="add to tutor schedule"> 
             {% else %}
-            <input class="btn btn-primary" type="submit" value="find tutor">  
+            <input class="btn btn-primary" style = "margin-left: 20px;"type="submit" value="find tutor">  
         </form>    
             {% endif %}
 </div>
