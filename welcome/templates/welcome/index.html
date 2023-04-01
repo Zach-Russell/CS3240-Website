@@ -81,9 +81,26 @@ This stuff is the older version, if need to revert then uncomment above -->
                     <a class="nav-link" href="/welcome/">Home</a>
                 </li>
                 {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/welcome/selectClass/">Add Tutoring Classes</a>
-                    </li>
+                    {% if user.type == "tut" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/{{user.email}}/tutor">Profile</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/{{user.email}}/student">Profile</a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+                {% if user.is_authenticated %}
+                    {% if user.type == "tut" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/welcome/selectClass/">Add Tutoring Classes</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/welcome/selectClass">Schedule Tutoring</a>
+                        </li>
+                    {% endif %}
                 {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="#about">About</a>

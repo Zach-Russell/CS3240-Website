@@ -182,3 +182,14 @@
   border-radius: 3px;
 }
 
+
+
+
+
+  /*-------FOOTER------------*/
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
