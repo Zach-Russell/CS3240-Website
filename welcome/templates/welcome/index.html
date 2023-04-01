@@ -78,20 +78,28 @@ This stuff is the older version, if need to revert then uncomment above -->
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ml-auto">
                 <li class="nav-item active">
-                <a class="nav-link" href="">Home</a>
+                    <a class="nav-link" href="/welcome/">Home</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/welcome/selectClass/">Add Tutoring Classes</a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="/welcome/selectClass/">Add Tutoring Classes</a>
+                    <a class="nav-link" href="#contact-form">Contact Us</a>
                 </li>
-                <li class="nav-item">
-                <a class="nav-link" href="">About</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="">Contact Us</a>
-                </li>
-                <li class="nav-item">
-                <a class="btn btn-primary" href="{% url 'account_logout' %}">Log Out</a>
-                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="{% url 'account_logout' %}">Log Out</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="{% url 'account_login' %}">Login</a>
+                    </li>
+                {% endif %}
             </ul>
             </div>
         </div>
@@ -114,7 +122,7 @@ This stuff is the older version, if need to revert then uncomment above -->
         <div class="text-box">
             <h1>Tutor Me</h1>
             <p>Connecting students and tutors</p>
-            <a href="{% provider_login_url 'google'%}" class="btn section-btn smoothScroll">Get started</a>
+            <a href="{% provider_login_url 'google'%}" class="start-button">Get started</a>
 
         </div>
         
@@ -122,9 +130,25 @@ This stuff is the older version, if need to revert then uncomment above -->
          
         
 
-    <section class="about">
+    <section class="about" id="about">
         <h1>About</h1>
-        <p>Tutor Me serves as a platform to connect tutors and students efficiently at UVA!</p>
+        <p>Tutor Me serves as a platform to connect tutors and students efficiently at UVA! Students who need academic assistance can easily search for classes in various subjects and request a tutor who fits their requirements. </p>
+        <div class="about-icons">
+            <div class="row">
+                <div>
+                    <h3>Register</h3>
+                    <i class="fas fa-user fa-3x"></i>
+                </div>
+                <div>
+                    <h3>Search for classes</h3>
+                    <i class="fas fa-search fa-3x"></i>
+                </div>
+                <div>
+                    <h3>Find tutors/students</h3>
+                    <i class="fas fa-handshake fa-3x"></i>
+                </div>
+            </div>
+        </div>
 
     </section>
 
@@ -134,22 +158,27 @@ This stuff is the older version, if need to revert then uncomment above -->
   
                     <div class="col-md-12 col-sm-12">
                         <div class="section-title">
-                            <h2>Contact us</h2>
-                            <span class="line-bar">...</span>
+                            <h2>Contact Us</h2>
                         </div>
                     </div>
   
                     <div class="col-md-8 col-sm-8">
                           
                         <!-- CONTACT FORM HERE -->
-                        <form id="contact-form" role="form" action="#" method="post">
+                        <form id="contact-form" action="" role="form" method="post">
+                            {% csrf_token %}
                             <div class="col-md-6 col-sm-6">
                                 <input type="text" class="form-control" placeholder="Full Name" id="cf-name" name="cf-name" required="">
                             </div>
-  
+
                             <div class="col-md-6 col-sm-6">
-                                <input type="tel" class="form-control" placeholder="Your Phone Number" id="cf-number" name="cf-number" required="">
-                            </div>
+                                <select class="form-control" id="cf-about" name="cf-about">
+                                     <option>About You</option>
+                                     <option>Student</option>
+                                     <option>Tutor</option>
+                                     <option>Other</option>
+                                </select>
+                           </div>
 
                             <div class="col-md-6 col-sm-6">
                                 <input type="email" class="form-control" placeholder="Your Email" id="cf-email" name="cf-email" required="">
@@ -164,7 +193,8 @@ This stuff is the older version, if need to revert then uncomment above -->
                             </div>
   
                             <div class="col-md-4 col-sm-12">
-                                <input type="submit" class="form-control" name="submit" value="Send Message">
+                                <!-- <input type="submit" class="form-control" name="submit" value="Send Message"> -->
+                                <a class="form-submit" name="submit" href="/welcome/">Send Message</a>
                             </div>
   
                         </form>
@@ -201,7 +231,7 @@ This stuff is the older version, if need to revert then uncomment above -->
         <div class="col-md-3">
           <h4>Links</h4>
           <ul class="list-unstyled">
-            <li><a href="#">Home</a></li>
+            <li><a href="/welcome/">Home</a></li>
             <li><a href="#">Tutors</a></li>
           </ul>
         </div>
