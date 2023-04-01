@@ -28,8 +28,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="">Home</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="/welcome">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/welcome/selectClass/">Add Tutoring Classes</a>
@@ -39,6 +39,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/welcome/#contact-form">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/welcome/selectTimings/">Add available times</a>
           </li>
           <li class="nav-item">
             <a class="btn btn-primary" href="{% url 'account_logout' %}">Log Out</a>
@@ -64,72 +67,52 @@
 <div class="row">
   <h1>Hello, this {{user.first_name}}'s tutor view!</h1>
   <div style = "justify-content: center;">
+  <h2>This is {{user.first_name}}'s current request</h2>
+    <ul style = "list-style-type: none;">
+
+        {% for request in requests_list %}     
+        {% if user.id == request.tutor.id %} 
+        {% if request.accepted == '' %} 
+        <form action="{% url 'welcome:requestChoice' request.id%}" method="post"> 
+          {% csrf_token %}
+        <div style = "border-style: solid;">
+        <li>{{request.student.first_name}} {{request.student.last_name}} has requested a tutor for the class {{request.course}} on {{request.time}}</li>
+        <input class="btn btn-primary" type="submit" value="accept" name = "choice">  
+        <input class="btn btn-primary" type="submit" value="decline" name = "choice">  
+      </div>
+      </form>
+      {% endif %}
+      {% endif %}
+        {% endfor %} 
+    </ul>
+    <h2>accepted requests</h2>
+    {% for request in requests_list %}     
+    {% if user.id == request.tutor.id %} 
+    {% if request.accepted == 'acc' %} 
+    <ul style = "list-style-type: none;">
+    <li>
+      {{request.student.first_name}} {{request.student.last_name}} for the class {{request.course}} on {{request.time}}
+    </li></ul>
+    
+    {% endif %}
+    {% endif %}
+    {% endfor %}
   <h2>This is {{user.first_name}}'s current tutor classes</h2>
   <ul>
     {% for class in user.schedule_set.first.schedule %}
     <li>{{class}}</li>
     {% endfor %}
   </ul>
+  <h2>This is {{user.first_name}}'s available times</h2>
+  <ul>
+    {% for timings in user.schedule_set.first.tutorTimings %}
+    <li>{{timings}}</li>
+    {% endfor %}
+  </ul>
+    
 </div>
 </div>
 {% endblock %}
 
-<div>
-  {% if user.classes_signed_up %}
-    <h6>List of classes currently signed up to tutor:</h6>
-    <ul>
-    {% for class in user.classes_signed_up %}
-    <li>{{ class }}</li>
-    {% endfor %}
-    </ul>
-  {% else %}
-    <h6>Not currently signed up to tutor any classes</h6>
-  {% endif %}
-</div>
-
-
-<!-- FOOTER -->
-<footer class="footer-bottom bg-dark text-white">
-  <br>
-  <div class="container d-flex justify-content-center py-4">
-    <div class="row">
-      <div class="col-md-6">
-        <h4>About Us</h4>
-        <p>Tutor Me serves as a platform to connect tutors and students efficiently at UVA!</p>
-        <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
-
-        <!-- Twitter -->
-        <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee" href="#!" role="button"><i class="fab fa-twitter"></i></a>
-        <!-- Instagram -->
-        <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac" href="#!" role="button"><i class="fab fa-instagram"></i></a>
-        <!-- Linkedin -->
-        <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
-  
-      </div>
-      <div class="col-md-3">
-        <h4>Links</h4>
-        <ul class="list-unstyled">
-          <li><a href="/welcome/">Home</a></li>
-          <li><a href="#">Tutors</a></li>
-        </ul>
-      </div>
-      <div class="col-md-3">
-        <h4>Contact Us</h4>
-        <ul class="list-unstyled">
-          <li><i class="fa fa-envelope-o" aria-hidden="true"></i> info@tutorme.com</li>
-          <li><i class="fa fa-phone" aria-hidden="true"></i> 1-800-800-8000</li>
-          <li><i class="fa fa-map-marker" aria-hidden="true"></i> 85 Engineer's Way, Charlottesville, VA 22903</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Copyright -->
-  <div class = "text-center" style="background-color: rgba(0, 0, 0, 0.2);">
-      <br>
-    <p>&copy; 2023 Tutor Me</p>
-  </div>
-
-</footer>
 
 </body>

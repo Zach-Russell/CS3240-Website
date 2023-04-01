@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 import requests
-from .models import User, Schedule
+from .models import User, Schedule, Request
 # Create your views here.
 
 class IndexView(generic.ListView):
@@ -19,14 +19,15 @@ class selectTypeView(generic.ListView):
 
 class tutorView(generic.ListView):
     template_name = 'welcome/tutor.html'
+    context_object_name = 'requests_list'
     def get_queryset(self):
-        return "tutor_success"
-
+        return Request.objects.all()
 
 class studentView(generic.ListView):
     template_name = 'welcome/student.html'
+    context_object_name = 'requests_list'
     def get_queryset(self):
-        return "student success"
+        return Request.objects.all()
 
 class selectClassView(generic.ListView):
     template_name = 'welcome/selectClasses.html'
@@ -81,8 +82,9 @@ def addToSchedule(request, user_id):
             url +='/tutor/'
         return HttpResponseRedirect((url))
     else:
+        classReq = request.POST['class']
         schedules = Schedule.objects.filter(schedule__icontains=request.POST['class'])
-        return render(request,'welcome/listTutors.html',{'schedules' : schedules})
+        return render(request,'welcome/listTutors.html',{'schedules' : schedules, 'classReq': classReq})
 
 def finishSignup(request):
     model = User
@@ -121,3 +123,68 @@ def findClassByName(request):
     for course in courses:
         res.append(course)
     return render(request,'welcome/listClasses.html',{'classesFiltered' : res})
+
+class selectTimingsView(generic.ListView):
+    template_name = 'welcome/selectTimings.html'
+    def get_queryset(self):
+        return "timings success"
+
+def viewTutorTime(request, user_id):
+     spl = request.POST.get('tutor').split(' ')
+     tutorId = spl[0]
+     course = spl[1] + ' ' + spl[2]
+     tutorUser = User.objects.get(pk=tutorId)
+     tutorSchedule = Schedule.objects.get(User = tutorUser)
+     tutorAvailableTimes = tutorSchedule.tutorTimings
+     return render(request,'welcome/viewTutorTime.html',{'tutorUser' : tutorUser, 'tutorAvailableTimes' : tutorAvailableTimes, 'course': course})
+     
+def requestTutorTime(request, user_id, tutor_id, course):
+    tutorUser = User.objects.get(pk=tutor_id)
+    tutorSchedule = Schedule.objects.get(User=tutorUser)
+    time = request.POST.get('tutorTime')
+    user = User.objects.get(pk=user_id)
+    request = Request(student = user, tutor = tutorUser, course = course, time = time)
+    request.save()
+    url = '/' + user.email
+    if(user.type == 'stu'):
+        url += '/student/'
+    else:
+        url +='/tutor/'
+    return HttpResponseRedirect((url))
+def confirmTimings(request, user_id):
+    user = User.objects.get(pk=user_id)
+    list = request.POST.getlist('class')
+    for timing in list:
+        spl = timing.split(' ')
+        print(spl)
+        day = spl[0]
+        time = spl[1] + spl[2]
+        course_time = day + ' ' + time
+        try:
+            schedule = Schedule.objects.get(User = user)
+        except Schedule.DoesNotExist:
+            schedule = Schedule(schedule = [], User = user)
+            schedule.save()
+        schedule.tutorTimings.append(course_time)
+        schedule.save()
+    url = '/' + user.email
+    if(user.type == 'stu'):
+        url += '/student/'
+    else:
+        url +='/tutor/'
+    return HttpResponseRedirect((url))
+
+def requestChoice(request, request_id):
+    req = Request.objects.get(pk = request_id)
+    choice = request.POST.get('choice')
+    if choice == 'accept':
+        req.accepted='acc'
+    else:
+        req.accepted = 'dec'
+    req.save()
+    url = '/' + request.user.email
+    if(request.user.type == 'stu'):
+        url += '/student/'
+    else:
+        url +='/tutor/'
+    return HttpResponseRedirect((url))

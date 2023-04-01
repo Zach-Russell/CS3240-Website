@@ -57,4 +57,12 @@ class User(AbstractBaseUser, PermissionsMixin):
   
 class Schedule(models.Model):
     User = models.ForeignKey(User, on_delete=models.CASCADE)
-    schedule = ArrayField(models.CharField(max_length=20, blank = True))
+    schedule = ArrayField(models.CharField(max_length=50, blank = True))
+    tutorTimings = ArrayField(models.CharField(max_length=50, blank = True))
+
+class Request(models.Model):
+   student = models.ForeignKey(User, on_delete=models.CASCADE, related_name= 'student')
+   tutor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tutor')
+   course = models.CharField(max_length=254, null=True, blank=True)
+   time = models.CharField(max_length=254, null=True, blank=True)
+   accepted = models.CharField(max_length=3, choices=[('acc', 'accept'),('dec', 'decline'), ("", "none")], default = "")

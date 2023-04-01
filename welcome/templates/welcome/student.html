@@ -26,8 +26,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="">Home</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="/welcome">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/welcome/selectClass">Schedule Tutoring</a>
@@ -61,6 +61,40 @@
 
 <div class="row">
   <h1>Hello, this {{user.first_name}}'s student view!</h1>
+  <div style = "justify-content: center;">
+    <h2>This is {{user.first_name}}'s current request</h2>
+      <ul style = "list-style-type: none;">
+          {% for request in requests_list %}     
+          {% if user.id == request.student.id %} 
+          {% if request.accepted == '' %} 
+          <li>{{request.student.first_name}} {{request.student.last_name}} has requested a tutor for the class {{request.course}} on {{request.time}}</li> 
+        {% endif %}
+        {% endif %}
+          {% endfor %} 
+      </ul>
+      <h2>accepted requests</h2>
+      {% for request in requests_list %}     
+      {% if user.id == request.student.id %} 
+      {% if request.accepted == 'acc' %} 
+      <ul style = "list-style-type: none;">
+      <li>
+        {{request.student.first_name}} {{request.student.last_name}} for the class {{request.course}} on {{request.time}}
+      </li></ul>
+       {% endif %}
+      {% endif %}
+      {% endfor %}
+      <h2>declined requests</h2>
+      {% for request in requests_list %}     
+      {% if user.id == request.student.id %} 
+      {% if request.accepted == 'dec' %} 
+      <ul style = "list-style-type: none;">
+      <li>
+        {{request.student.first_name}} {{request.student.last_name}} for the class {{request.course}} on {{request.time}}
+      </li></ul>
+       {% endif %}
+      {% endif %}
+      {% endfor %}
+  </div>
 </div>
 {% endblock %}
 
@@ -86,7 +120,7 @@
       <div class="col-md-3">
         <h4>Links</h4>
         <ul class="list-unstyled">
-          <li><a href="/welcome/">Home</a></li>
+          <li><a href="/welcome">Home</a></li>
           <li><a href="#">Tutors</a></li>
         </ul>
       </div>

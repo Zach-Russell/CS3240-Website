@@ -87,6 +87,10 @@ DATABASES={
       'PASSWORD':'a6f7d246548b7725076674c3b52d69f031e9ff37a295a59cd2a98f00a565555f',
       'HOST':'ec2-52-71-23-11.compute-1.amazonaws.com',
       'PORT':'5432',
+      'TEST' : {
+            'MIRROR' : 'default',
+      },
+      
    }
 }
 
