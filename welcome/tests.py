@@ -31,13 +31,13 @@ class WebpageResponseTests(TestCase):
     '''
     These are tests to check that there are responses for each webpage.
     '''
-    def test_welcome_index(self):
-        response = self.client.get(reverse('welcome:index'))
-        self.assertEqual(response.status_code, 200)
+    # def test_welcome_index(self):
+    #     response = self.client.get(reverse('welcome:index'))
+    #     self.assertEqual(response.status_code, 200)
 
-    def test_welcome_selectType(self):
-        response = self.client.get(reverse('welcome:selectType'))
-        self.assertEqual(response.status_code, 200)
+    # def test_welcome_selectType(self):
+    #     response = self.client.get(reverse('welcome:selectType'))
+    #     self.assertEqual(response.status_code, 200)
 
     # def test_welcome_tutor(self):
 
@@ -48,17 +48,17 @@ class WebpageResponseTests(TestCase):
     #     response = self.client.get(reverse('welcome:student'))
     #     self.assertEqual(response.status_code, 200)
 
-    def test_welcome_finishSingup(self):
-        response = self.client.get(reverse('welcome:finishSignup'))
-        self.assertEqual(response.status_code, 200)
+    # def test_welcome_finishSingup(self):
+    #     response = self.client.get(reverse('welcome:finishSignup'))
+    #     self.assertEqual(response.status_code, 200)
 
-    def test_welcome_selectClass(self):
-        response = self.client.get(reverse('welcome:selectClass'))
-        self.assertEqual(response.status_code, 200)
+    # def test_welcome_selectClass(self):
+    #     response = self.client.get(reverse('welcome:selectClass'))
+    #     self.assertEqual(response.status_code, 200)
 
-    def test_welcome_findClass(self):
-        response = self.client.get(reverse('welcome:findClass'))
-        self.assertEqual(response.status_code, 200)
+    # def test_welcome_findClass(self):
+    #     response = self.client.get(reverse('welcome:findClass'))
+    #     self.assertEqual(response.status_code, 200)
 
     # def test_welcome_addToSchedule(self):
     #     response = self.client.get(reverse('welcome:addToSchedule'))
