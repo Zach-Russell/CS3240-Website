@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from .models import User, UserManager, Schedule
 from django.urls import reverse
 
@@ -25,40 +25,55 @@ class UserTests(TestCase):
     '''
     These are tests for the User model. Eventually once large enough they should be moved to their own test file.
     '''
+    # @classmethod
+    # def setUpTestData(cls):
+    #     model = User
+    #     cls.user = model.objects.create_superuser(email="foobar@user.com", password="123abc", type="tut")
+        
+    # def test_new_test(self):
+        
+    #     self.assertEqual(self.user.email, )
     None
+
 
 class WebpageResponseTests(TestCase):
     '''
     These are tests to check that there are responses for each webpage.
     '''
-    # def test_welcome_index(self):
-    #     response = self.client.get(reverse('welcome:index'))
-    #     self.assertEqual(response.status_code, 200)
 
-    # def test_welcome_selectType(self):
-    #     response = self.client.get(reverse('welcome:selectType'))
-    #     self.assertEqual(response.status_code, 200)
+    def test_welcome_index(self):
+        response = self.client.get(reverse('welcome:index'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_welcome_selectType(self):
+        response = self.client.get(reverse('welcome:selectType'))
+        self.assertEqual(response.status_code, 200)
 
     # def test_welcome_tutor(self):
+    #     model = User
+    #     model.objects.create_superuser(email="foobar@user.com", password="123abc", type="tut")
+    #     self.client.login(username="foobar@user.com", password="123abc")
 
     #     response = self.client.get(reverse('welcome:tutor'))
     #     self.assertEqual(response.status_code, 200)
+
+
 
     # def test_welcome_student(self):
     #     response = self.client.get(reverse('welcome:student'))
     #     self.assertEqual(response.status_code, 200)
 
-    # def test_welcome_finishSingup(self):
-    #     response = self.client.get(reverse('welcome:finishSignup'))
-    #     self.assertEqual(response.status_code, 200)
+    def test_welcome_finishSingup(self):
+        response = self.client.get(reverse('welcome:finishSignup'))
+        self.assertEqual(response.status_code, 200)
 
-    # def test_welcome_selectClass(self):
-    #     response = self.client.get(reverse('welcome:selectClass'))
-    #     self.assertEqual(response.status_code, 200)
+    def test_welcome_selectClass(self):
+        response = self.client.get(reverse('welcome:selectClass'))
+        self.assertEqual(response.status_code, 200)
 
-    # def test_welcome_findClass(self):
-    #     response = self.client.get(reverse('welcome:findClass'))
-    #     self.assertEqual(response.status_code, 200)
+    def test_welcome_findClass(self):
+        response = self.client.get(reverse('welcome:findClass'))
+        self.assertEqual(response.status_code, 200)
 
     # def test_welcome_addToSchedule(self):
     #     response = self.client.get(reverse('welcome:addToSchedule'))
