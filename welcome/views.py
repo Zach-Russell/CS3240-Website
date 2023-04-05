@@ -69,12 +69,13 @@ def addToSchedule(request, user_id):
         try:
             schedule = Schedule.objects.get(User = user)
         except Schedule.DoesNotExist:
-            schedule = Schedule(schedule = [], User = user)
+            schedule = Schedule(schedule = [], tutorTimings = [], User = user)
             schedule.save()
         list = request.POST.getlist('class')
         for x in list:
-            schedule.schedule.append(x)
-            schedule.save()            
+            if(x not in schedule.schedule):
+                schedule.schedule.append(x)
+                schedule.save()            
         url = '/' + user.email
         if(user.type == 'stu'):
             url += '/student/'
@@ -151,6 +152,7 @@ def requestTutorTime(request, user_id, tutor_id, course):
     else:
         url +='/tutor/'
     return HttpResponseRedirect((url))
+
 def confirmTimings(request, user_id):
     user = User.objects.get(pk=user_id)
     list = request.POST.getlist('class')
@@ -162,10 +164,11 @@ def confirmTimings(request, user_id):
         course_time = day + ' ' + time
         try:
             schedule = Schedule.objects.get(User = user)
-        except Schedule.DoesNotExist:
-            schedule = Schedule(schedule = [], User = user)
+        except:
+            schedule = Schedule(schedule = [], tutorTimings = [], User = user)
             schedule.save()
-        schedule.tutorTimings.append(course_time)
+        if(course_time not in schedule.tutorTimings):
+            schedule.tutorTimings.append(course_time)
         schedule.save()
     url = '/' + user.email
     if(user.type == 'stu'):
@@ -182,6 +185,18 @@ def requestChoice(request, request_id):
     else:
         req.accepted = 'dec'
     req.save()
+    url = '/' + request.user.email
+    if(request.user.type == 'stu'):
+        url += '/student/'
+    else:
+        url +='/tutor/'
+    return HttpResponseRedirect((url))
+
+def deleteTime(request, time_to_delete):
+    user = request.user
+    schedule = Schedule.objects.get(User = user)
+    schedule.tutorTimings.remove(time_to_delete)
+    schedule.save()
     url = '/' + request.user.email
     if(request.user.type == 'stu'):
         url += '/student/'

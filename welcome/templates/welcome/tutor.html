@@ -64,6 +64,10 @@
   <ul>
     {% for timings in user.schedule_set.first.tutorTimings %}
     <li>{{timings}}</li>
+      <form action="{% url 'welcome:deleteTime' timings %}" method="post"> 
+      {% csrf_token %}
+      <input class="btn btn-primary" type="submit" value="delete" name = "choice">  
+      </form>
     {% endfor %}
   </ul>
     
