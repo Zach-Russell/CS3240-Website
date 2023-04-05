@@ -69,7 +69,7 @@ def addToSchedule(request, user_id):
         try:
             schedule = Schedule.objects.get(User = user)
         except Schedule.DoesNotExist:
-            schedule = Schedule(schedule = [], User = user)
+            schedule = Schedule(schedule = [], tutorTimings = [], User = user)
             schedule.save()
         list = request.POST.getlist('class')
         for x in list:
@@ -162,8 +162,8 @@ def confirmTimings(request, user_id):
         course_time = day + ' ' + time
         try:
             schedule = Schedule.objects.get(User = user)
-        except Schedule.DoesNotExist:
-            schedule = Schedule(schedule = [], User = user)
+        except:
+            schedule = Schedule(schedule = [], tutorTimings = [], User = user)
             schedule.save()
         schedule.tutorTimings.append(course_time)
         schedule.save()
