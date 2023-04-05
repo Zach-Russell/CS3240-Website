@@ -73,8 +73,9 @@ def addToSchedule(request, user_id):
             schedule.save()
         list = request.POST.getlist('class')
         for x in list:
-            schedule.schedule.append(x)
-            schedule.save()            
+            if(x not in schedule.schedule):
+                schedule.schedule.append(x)
+                schedule.save()            
         url = '/' + user.email
         if(user.type == 'stu'):
             url += '/student/'
@@ -151,6 +152,7 @@ def requestTutorTime(request, user_id, tutor_id, course):
     else:
         url +='/tutor/'
     return HttpResponseRedirect((url))
+
 def confirmTimings(request, user_id):
     user = User.objects.get(pk=user_id)
     list = request.POST.getlist('class')
@@ -165,7 +167,8 @@ def confirmTimings(request, user_id):
         except:
             schedule = Schedule(schedule = [], tutorTimings = [], User = user)
             schedule.save()
-        schedule.tutorTimings.append(course_time)
+        if(course_time not in schedule.tutorTimings):
+            schedule.tutorTimings.append(course_time)
         schedule.save()
     url = '/' + user.email
     if(user.type == 'stu'):
