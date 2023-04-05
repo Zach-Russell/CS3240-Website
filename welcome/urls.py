@@ -16,5 +16,6 @@ urlpatterns = [
     path('findClassByName/', views.findClassByName, name='findClassByName'),
     path('selectTimings/', views.selectTimingsView.as_view(), name='selectTimings'),
     path('<int:user_id>/confirmTimings/', views.confirmTimings, name='confirmTimings'),
-    path('<int:request_id>/requestChoice/', views.requestChoice, name='requestChoice')
+    path('<int:request_id>/requestChoice/', views.requestChoice, name='requestChoice'),
+    path('<str:time_to_delete>/deleteTime', views.deleteTime, name='deleteTime')
 ]

@@ -191,3 +191,15 @@ def requestChoice(request, request_id):
     else:
         url +='/tutor/'
     return HttpResponseRedirect((url))
+
+def deleteTime(request, time_to_delete):
+    user = request.user
+    schedule = Schedule.objects.get(User = user)
+    schedule.tutorTimings.remove(time_to_delete)
+    schedule.save()
+    url = '/' + request.user.email
+    if(request.user.type == 'stu'):
+        url += '/student/'
+    else:
+        url +='/tutor/'
+    return HttpResponseRedirect((url))
