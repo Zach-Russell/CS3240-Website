@@ -87,9 +87,11 @@
               <td>Select</td>
               <th>Name</th>
               <th>Email</th>
+              <th>Tutor Rate</th>
               <th>Times Available</th>
             </tr>
         {% for schedule in schedules %}
+        {% if schedule.User.type == 'tut' %}
         <tr>
           <td>
             <input type = "radio" name = "tutor" value = '{{schedule.User.id}} {{classReq}}'>
@@ -101,6 +103,9 @@
                 {{schedule.User.email}}
             </td>
             <td>
+              ${{schedule.User.rate}}/hr
+          </td>
+            <td>
               <ul style = "list-style-type: none;">
                 {% for timings in schedule.tutorTimings %}
                 <li>
@@ -110,6 +115,7 @@
               </ul>
             </td>
         </tr> 
+        {% endif %}
         {% endfor %}   
     </div>
     <input class="btn btn-primary" style = "margin-left: 20px; margin-bottom: 10px;" type="submit" value="request"> 

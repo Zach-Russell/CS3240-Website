@@ -1,0 +1,10 @@
+<form action="{% url 'welcome:changeTutorRate'%}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend><h1>Change your current rate</h1></legend>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}    
+                <label>New Rate/Hour</label>   
+                <input placeholder = 1.00 type="number" min="0.00" max = "10000.00" step ="0.01" name = "newRate"/>
+    </fieldset>
+    <input class="btn btn-primary" style = "margin-top: 20px ;"type="submit" value="Submit">
+    </form>
