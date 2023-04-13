@@ -63,6 +63,11 @@
                   <a class="nav-link" href="/welcome/selectTimings/">Add available times</a>
               </li>
               {% endif %}
+              {% if user.type == "tut" %}
+              <li class="nav-item">
+                  <a class="nav-link" href="/welcome/changeRate/">Change Rate</a>
+              </li>
+              {% endif %}
           {% endif %}
 
           {% if user.is_authenticated %}

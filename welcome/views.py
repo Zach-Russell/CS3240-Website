@@ -28,6 +28,11 @@ class studentView(generic.ListView):
     context_object_name = 'requests_list'
     def get_queryset(self):
         return Request.objects.all()
+    
+class changeRateView(generic.ListView):
+    template_name = 'welcome/changeRate.html'
+    def get_queryset(self):
+        return 'changeRate success'
 
 class selectClassView(generic.ListView):
     template_name = 'welcome/selectClasses.html'
@@ -202,4 +207,12 @@ def deleteTime(request, time_to_delete):
         url += '/student/'
     else:
         url +='/tutor/'
+    return HttpResponseRedirect((url))
+
+def changeTutorRate(request):
+    user = request.user
+    newRate = request.POST['newRate']
+    user.rate = newRate
+    user.save()
+    url = '/' + request.user.email + '/tutor/'
     return HttpResponseRedirect((url))

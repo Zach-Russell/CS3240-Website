@@ -45,7 +45,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(auto_now_add=True)
     type = models.CharField(max_length=3, choices=[('tut', 'tutor'),('stu', 'student')], default = "")
     classes_signed_up = set()
-
+    rate = models.DecimalField(max_digits=5, decimal_places = 2, default = 5.00)
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = ['type']
