@@ -208,6 +208,27 @@ def deleteTime(request, time_to_delete):
     else:
         url +='/tutor/'
     return HttpResponseRedirect((url))
+def deleteClassTutor(request, class_to_delete):
+    user = request.user
+    schedule = Schedule.objects.get(User = user)
+    schedule.schedule.remove(class_to_delete)
+    schedule.save()
+    url = '/' + request.user.email
+    if(request.user.type == 'stu'):
+        url += '/student/'
+    else:
+        url +='/tutor/'
+    return HttpResponseRedirect((url))
+
+def deleteRequest(request,request_id):
+    req_to_delete = Request.objects.get(pk = request_id)
+    req_to_delete.delete()
+    url = '/' + request.user.email
+    if(request.user.type == 'stu'):
+        url += '/student/'
+    else:
+        url +='/tutor/'
+    return HttpResponseRedirect((url))
 
 def changeTutorRate(request):
     user = request.user
