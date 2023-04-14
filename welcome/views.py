@@ -135,14 +135,25 @@ class selectTimingsView(generic.ListView):
     def get_queryset(self):
         return "timings success"
 
-def viewTutorTime(request, user_id):
-     spl = request.POST.get('tutor').split(' ')
-     tutorId = spl[0]
-     course = spl[1] + ' ' + spl[2]
-     tutorUser = User.objects.get(pk=tutorId)
-     tutorSchedule = Schedule.objects.get(User = tutorUser)
-     tutorAvailableTimes = tutorSchedule.tutorTimings
-     return render(request,'welcome/viewTutorTime.html',{'tutorUser' : tutorUser, 'tutorAvailableTimes' : tutorAvailableTimes, 'course': course})
+def viewTutorTime(request, user_id, classReq):
+    try:
+        tutor = request.POST['tutor']
+    except:
+        # Redisplay the question voting form.
+        schedules = Schedule.objects.filter(schedule__icontains=classReq)
+        return render(request, 'welcome/listTutors.html', {
+            'schedules' : schedules, 
+            'classReq': classReq,
+            'error_message': "You must select a tutor before hitting request",
+        })
+    else:
+        spl = request.POST.get('tutor').split(' ')
+        tutorId = spl[0]
+        course = spl[1] + ' ' + spl[2]
+        tutorUser = User.objects.get(pk=tutorId)
+        tutorSchedule = Schedule.objects.get(User = tutorUser)
+        tutorAvailableTimes = tutorSchedule.tutorTimings
+        return render(request,'welcome/viewTutorTime.html',{'tutorUser' : tutorUser, 'tutorAvailableTimes' : tutorAvailableTimes, 'course': course})
      
 def requestTutorTime(request, user_id, tutor_id, course):
     tutorUser = User.objects.get(pk=tutor_id)
@@ -163,7 +174,6 @@ def confirmTimings(request, user_id):
     list = request.POST.getlist('class')
     for timing in list:
         spl = timing.split(' ')
-        print(spl)
         day = spl[0]
         time = spl[1] + spl[2]
         course_time = day + ' ' + time
@@ -185,7 +195,8 @@ def confirmTimings(request, user_id):
 def requestChoice(request, request_id):
     req = Request.objects.get(pk = request_id)
     choice = request.POST.get('choice')
-    if choice == 'accept':
+    print(choice)
+    if choice == 'Accept':
         req.accepted='acc'
     else:
         req.accepted = 'dec'
