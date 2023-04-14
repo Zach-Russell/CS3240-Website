@@ -22,10 +22,10 @@
 <body>
 
 <div class="row">
-  <h1>Hello, this {{user.first_name}}'s tutor view!</h1>
-  <h2>This is {{user.first_name}}'s current rate/hr: ${{user.rate}}</h2>
+  <h1 >Hello, this {{user.first_name}}'s tutor view!</h1>
+  <h2 >This is {{user.first_name}}'s current rate/hr: ${{user.rate}}</h2>
   <div style = "justify-content: center;">
-  <h2>This is {{user.first_name}}'s current request</h2>
+  <h2 >This is {{user.first_name}}'s current request</h2>
     <ul style = "list-style-type: none;">
 
         {% for request in requests_list %}     
@@ -55,7 +55,7 @@
     {% endif %}
     {% endif %}
     {% endfor %}
-  <h2>This is {{user.first_name}}'s current tutor classes</h2>
+  <h2>These are {{user.first_name}}'s current tutor classes</h2>
   <ul>
     {% for class in user.schedule_set.first.schedule %}
     <li>{{class}}</li>
