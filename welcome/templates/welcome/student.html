@@ -34,7 +34,7 @@
   }
   .pending-requests{
     margin-left: 20;
-    margin-top: 10;
+    margin-top: 30;
     text-align: center;
   }
   .parent-requests{
@@ -45,7 +45,7 @@
   }
   .child-requests{
     display: inline-block;
-    padding: 2rem 2rem;
+    border: 1px;
     vertical-align: middle;
   }
  
@@ -71,7 +71,7 @@
 
 <div class = "parent-requests">
   <div class = "child-requests accepted">
-    <h2 style = "text-align: center;">accepted requests</h2>
+    <h2 style = "text-align: center;">Accepted Requests</h2>
       {% for request in requests_list %}     
       {% if user.id == request.student.id %} 
       {% if request.accepted == 'acc' %} 
@@ -85,7 +85,7 @@
 
   </div>
   <div class = "child-requests declined">
-    <h2 style = "text-align: center;">declined requests</h2>
+    <h2 style = "text-align: center;">Declined Requests</h2>
       {% for request in requests_list %}     
       {% if user.id == request.student.id %} 
       {% if request.accepted == 'dec' %} 
