@@ -22,11 +22,42 @@
 
 <body>
 
+<style>
+  .profile-header{
+    width: 700px;
+    height: 60px;
+    border: 2px solid rgb(56, 53, 71);
+    text-align: center;
+    margin: auto;
+    margin-top: 25;
+    border-radius: 10px;
+  }
+  .pending-requests{
+    margin-left: 20;
+    margin-top: 10;
+    text-align: center;
+  }
+  .parent-requests{
+    margin: 1rem;
+    padding: 2rem 2rem;
+    text-align: center;  
 
-<div class="row">
-  <h1>Hello, this {{user.first_name}}'s student view!</h1>
-  <div style = "justify-content: center;">
-    <h2>This is {{user.first_name}}'s current request</h2>
+  }
+  .child-requests{
+    display: inline-block;
+    padding: 2rem 2rem;
+    vertical-align: middle;
+  }
+ 
+
+</style>
+
+<div class = "profile-header">
+  <h1 style= "text-align: center;">{{user.first_name}}'s Student Profile!</h1>
+</div>
+
+<div class = "pending-requests" >
+  <h2>Pending Requests</h2>
       <ul style = "list-style-type: none;">
           {% for request in requests_list %}     
           {% if user.id == request.student.id %} 
@@ -36,7 +67,11 @@
         {% endif %}
           {% endfor %} 
       </ul>
-      <h2>accepted requests</h2>
+</div>
+
+<div class = "parent-requests">
+  <div class = "child-requests accepted">
+    <h2 style = "text-align: center;">accepted requests</h2>
       {% for request in requests_list %}     
       {% if user.id == request.student.id %} 
       {% if request.accepted == 'acc' %} 
@@ -47,7 +82,10 @@
        {% endif %}
       {% endif %}
       {% endfor %}
-      <h2>declined requests</h2>
+
+  </div>
+  <div class = "child-requests declined">
+    <h2 style = "text-align: center;">declined requests</h2>
       {% for request in requests_list %}     
       {% if user.id == request.student.id %} 
       {% if request.accepted == 'dec' %} 
@@ -58,11 +96,14 @@
        {% endif %}
       {% endif %}
       {% endfor %}
+
   </div>
+
+</div>
+
+<div class="row">
 </div>
 
 </body>
 
 {% endblock %}
-
-
