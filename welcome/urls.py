@@ -19,5 +19,7 @@ urlpatterns = [
     path('<int:request_id>/requestChoice/', views.requestChoice, name='requestChoice'),
     path('<str:time_to_delete>/deleteTime', views.deleteTime, name='deleteTime'),
     path('changeRate/', views.changeRateView.as_view(), name ='changeRate'),
-    path('changeTutorRate/', views.changeTutorRate, name = 'changeTutorRate')
+    path('changeTutorRate/', views.changeTutorRate, name = 'changeTutorRate'),
+    path('<int:request_id>/deleteRequest/', views.deleteRequest, name='deleteRequest'),
+     path('<str:class_to_delete>/deleteClassTutor', views.deleteClassTutor, name='deleteClassTutor'),
 ]

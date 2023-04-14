@@ -20,90 +20,108 @@
   </head>
 </html>
 
-<body>
 
 <style>
-  .profile-header{
-    width: 700px;
-    height: 60px;
-    border: 2px solid rgb(56, 53, 71);
-    text-align: center;
-    margin: auto;
-    margin-top: 25;
-    border-radius: 10px;
+  .tutorProfileContainer{
+    display: flex;
+    padding-left: 20px;
   }
-  .pending-requests{
-    margin-left: 20;
-    margin-top: 30;
-    text-align: center;
+  .profileSection{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin-right:20px;
+    padding-left: 10px;
+    width:100%
   }
-  .parent-requests{
-    margin: 1rem;
-    padding: 2rem 2rem;
-    text-align: center;  
-
+  .basicProfileInfo{
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin-top: 10px;
+    text-align: left;
+    width: fit-content
   }
-  .child-requests{
-    display: inline-block;
-    border: 1px;
-    vertical-align: middle;
+   h1 {
+        background-color: #2c3e50;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        margin: 0;
+      }
+  .tutorProfileContainer h2 {
+        font-size: 28px;
+        margin-top: 30px;
+      }
+  .tutorProfileContainer ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
- 
-
+  .tutorProfileContainer li{
+    margin: 10px 0;
+  }
+  
+  .tutorProfileContainer form{
+    transition: all 0.5s ease-in-out;
+    border-radius: 5px;
+  }
+  .tutorProfileContainer form::before{
+    content: "➤ ";
+  }
 </style>
+<body>
 
-<div class = "profile-header">
-  <h1 style= "text-align: center;">{{user.first_name}}'s Student Profile!</h1>
-</div>
+<h1>{{user.first_name}}'s Student Profile</h1>
 
-<div class = "pending-requests" >
-  <h2>Pending Requests</h2>
-      <ul style = "list-style-type: none;">
-          {% for request in requests_list %}     
-          {% if user.id == request.student.id %} 
-          {% if request.accepted == '' %} 
-          <li>{{request.student.first_name}} {{request.student.last_name}} has requested a tutor for the class {{request.course}} on {{request.time}}</li> 
-        {% endif %}
-        {% endif %}
-          {% endfor %} 
-      </ul>
-</div>
 
-<div class = "parent-requests">
-  <div class = "child-requests accepted">
-    <h2 style = "text-align: center;">Accepted Requests</h2>
-      {% for request in requests_list %}     
-      {% if user.id == request.student.id %} 
-      {% if request.accepted == 'acc' %} 
-      <ul style = "list-style-type: none;">
-      <li>
-        {{request.student.first_name}} {{request.student.last_name}} for the class {{request.course}} on {{request.time}}
-      </li></ul>
-       {% endif %}
-      {% endif %}
-      {% endfor %}
-
-  </div>
-  <div class = "child-requests declined">
-    <h2 style = "text-align: center;">Declined Requests</h2>
-      {% for request in requests_list %}     
-      {% if user.id == request.student.id %} 
-      {% if request.accepted == 'dec' %} 
-      <ul style = "list-style-type: none;">
-      <li>
-        {{request.student.first_name}} {{request.student.last_name}} for the class {{request.course}} on {{request.time}}
-      </li></ul>
-       {% endif %}
-      {% endif %}
-      {% endfor %}
-
+<div class = "tutorProfileContainer" style = "width:100%; height:70%">
+  <div class= "profileSection">
+    <div class="basicProfileInfo">
+      <h2>Profile Information</h2>
+      <p><strong>Name: </strong>{{user.first_name}} {{user.last_name}}</p>
+      <p><strong>Email: </strong>{{user.email}}</p>
+      <p><strong>Current Rate: </strong> ${{user.rate}}/hr</p>
+      <p><strong>Profile Type: </strong> Student</p>
+    </div>
   </div>
 
-</div>
+  <div class = "profileSection requests">
+  <h2>This is {{user.first_name}}'s current request</h2>
+  <ul style = "list-style-type: none;">
 
-<div class="row">
+      {% for request in requests_list %}     
+      {% if user.id == request.student.id %} 
+      {% if request.accepted == '' %} 
+      <li>
+        <form action="{% url 'welcome:deleteRequest' request.id%}" method="post"> 
+          {% csrf_token %}
+        <label>{{request.student.first_name}} {{request.student.last_name}} has requested {{request.tutor.first_name}} {{request.tutor.last_name}} for the class {{request.course}} on {{request.time}}</label>
+        <input class="btn btn-danger" type="submit" value=Delete name = "choice">
+      </form>
+      </li>
+    {% endif %}
+    {% endif %}
+      {% endfor %} 
+  </ul>
+  <h2>Accepted Requests</h2>
+  {% for request in requests_list %}     
+  {% if user.id == request.student.id %} 
+  {% if request.accepted == 'acc' %} 
+  <ul style = "list-style-type: none;">
+  <li>
+    <form action="{% url 'welcome:deleteRequest' request.id %}" method="post"> 
+      {% csrf_token %}
+      <label> Tutor {{request.tutor.first_name}} {{request.tutor.last_name}} for the class {{request.course}} on {{request.time}} </label>
+      <input class="btn btn-danger" type="submit" value=Delete name = "choice">  
+      </form>
+  </li></ul>
+  
+  {% endif %}
+  {% endif %}
+  {% endfor %}
+  </div>
+  
 </div>
-
 </body>
 
 {% endblock %}
