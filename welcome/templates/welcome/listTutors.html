@@ -76,9 +76,10 @@
     </style>
 <div class = "mainListClassesContainer", >
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% if schedules|length %}    
     <h1 style = "margin-left: 20;">These are the available tutors for {{classReq}}</h1>
 
-    <form action="{% url 'welcome:viewTutorTime' user.id %}" method="post"> 
+    <form action="{% url 'welcome:viewTutorTime' user.id classReq %}" method="post"> 
     {% csrf_token %}
 
     <div class = "listContainer">
@@ -120,6 +121,10 @@
     </div>
     <input class="btn btn-primary" style = "margin-left: 20px; margin-bottom: 10px;" type="submit" value="request"> 
   </form> 
+    {% else %}
+    <h1>There are currently no tutors for this class</h1>
+    <a class = "btn btn-primary" href="/welcome/selectClass">Find another class</a>
+      {% endif %}
 </div>
 
 {% endblock %}
