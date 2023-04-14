@@ -21,47 +21,96 @@
          
 <body>
 
-<div class="row">
-  <h1 >Hello, this {{user.first_name}}'s tutor view!</h1>
-  <h2 >This is {{user.first_name}}'s current rate/hr: ${{user.rate}}</h2>
-  <div style = "justify-content: center;">
-  <h2 >This is {{user.first_name}}'s current request</h2>
-    <ul style = "list-style-type: none;">
+<style>
+  .profile-header{
+    width: 500px;
+    height: 60px;
+    border: 2px solid rgb(56, 53, 71);
+    text-align: center;
+    margin: auto;
+    margin-top: 25;
+    border-radius: 10px;
+  }
+  .rate{
+    margin-left: 20;
+    margin-top: 10;
+    text-align: center;
+  }
+  .parent{
+    border-radius: 10;
+    margin: 1rem;
+    padding: 2rem 2rem;
+    text-align: center;
+  }
+  .child{
+    display: inline-block;
+    padding: 1rem 1rem;
+  }
+  .current-requests{
+    text-align: center;
+    margin-top: 35;
+    margin-bottom: 5;
+  }
+  
+</style>
+<div class = "profile-header">
+  <h1 style = "font-size: 45;">{{user.first_name}}'s Tutor Profile</h1>
+</div>
 
-        {% for request in requests_list %}     
-        {% if user.id == request.tutor.id %} 
-        {% if request.accepted == '' %} 
-        <form action="{% url 'welcome:requestChoice' request.id%}" method="post"> 
-          {% csrf_token %}
-        <div style = "border-style: solid;">
-        <li>{{request.student.first_name}} {{request.student.last_name}} has requested a tutor for the class {{request.course}} on {{request.time}}</li>
-        <input class="btn btn-primary" type="submit" value="accept" name = "choice">  
-        <input class="btn btn-primary" type="submit" value="decline" name = "choice">  
+<div class = "rate">
+  <h2 style = "font-size: 20;">Current Rate/hr: ${{user.rate}}</h2>
+</div>
+
+<div class = "current-requests">
+  <h2 style = "text-align: center;" >Pending Requests</h2>
+  <ul style = "list-style-type: none;">
+      {% for request in requests_list %}     
+      {% if user.id == request.tutor.id %} 
+      {% if request.accepted == '' %} 
+      <form action="{% url 'welcome:requestChoice' request.id%}" method="post"> 
+        {% csrf_token %}
+      <div style = "margin-bottom: 10;">
+      <li style = "margin-bottom: 15;">{{request.student.first_name}} {{request.student.last_name}} has requested a tutor for the class {{request.course}} on {{request.time}}</li>
+      <input class="btn btn-primary"  type="submit" value="accept" name = "choice">  
+      <input class="btn btn-primary"  type="submit" value="decline" name = "choice">  
       </div>
-      </form>
-      {% endif %}
-      {% endif %}
-        {% endfor %} 
-    </ul>
-    <h2>accepted requests</h2>
-    {% for request in requests_list %}     
-    {% if user.id == request.tutor.id %} 
-    {% if request.accepted == 'acc' %} 
-    <ul style = "list-style-type: none;">
-    <li>
-      {{request.student.first_name}} {{request.student.last_name}} for the class {{request.course}} on {{request.time}}
-    </li></ul>
+    </form>
     
     {% endif %}
     {% endif %}
-    {% endfor %}
-  <h2>These are {{user.first_name}}'s current tutor classes</h2>
-  <ul>
-    {% for class in user.schedule_set.first.schedule %}
-    <li>{{class}}</li>
-    {% endfor %}
+      {% endfor %} 
   </ul>
-  <h2>This is {{user.first_name}}'s available times</h2>
+</div>
+
+<div class = "parent">
+  <div class = "child"> 
+      <h2> Accepted requests</h2>
+      {% for request in requests_list %}     
+      {% if user.id == request.tutor.id %} 
+      {% if request.accepted == 'acc' %} 
+      <ul style = "list-style-type: none;">
+      <li>
+        {{request.student.first_name}} {{request.student.last_name}} for the class {{request.course}} on {{request.time}}
+      </li></ul>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+
+  </div>
+  <div class = "child">
+    <h2>Current Tutor Classes</h2>
+    <ul>
+      {% for class in user.schedule_set.first.schedule %}
+      <li>{{class}}</li>
+      {% endfor %}
+  </ul>
+  </div>
+</div>
+
+
+<div class="row" style = "text-align: center;">
+  <div style = "justify-content: center;">
+  <h2>Available Times</h2>
   <ul>
     {% for timings in user.schedule_set.first.tutorTimings %}
     <li>{{timings}}</li>
@@ -70,9 +119,9 @@
       <input class="btn btn-primary" type="submit" value="delete" name = "choice">  
       </form>
     {% endfor %}
-  </ul>
-    
+  </ul>   
 </div>
+
 
 </body>
 
