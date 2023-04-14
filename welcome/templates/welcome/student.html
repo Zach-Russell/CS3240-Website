@@ -88,6 +88,7 @@
   <div class = "profileSection requests">
   <h2>This is {{user.first_name}}'s current request</h2>
   <ul style = "list-style-type: none;">
+
       {% for request in requests_list %}     
       {% if user.id == request.student.id %} 
       {% if request.accepted == '' %} 
@@ -124,5 +125,3 @@
 </body>
 
 {% endblock %}
-
-
