@@ -119,6 +119,22 @@
   {% endif %}
   {% endif %}
   {% endfor %}
+  <h2>Declined Requests</h2>
+  {% for request in requests_list %}     
+  {% if user.id == request.student.id %} 
+  {% if request.accepted == 'dec' %} 
+  <ul style = "list-style-type: none;">
+  <li>
+    <form action="{% url 'welcome:deleteRequest' request.id %}" method="post"> 
+      {% csrf_token %}
+      <label> Tutor {{request.tutor.first_name}} {{request.tutor.last_name}} for the class {{request.course}} on {{request.time}} </label>
+      <input class="btn btn-danger" type="submit" value=Delete name = "choice">  
+      </form>
+  </li></ul>
+  
+  {% endif %}
+  {% endif %}
+  {% endfor %}
   </div>
   
 </div>
