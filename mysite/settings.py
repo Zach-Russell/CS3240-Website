@@ -86,6 +86,9 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
+#Redirect HTTP -> HTTPS
+SECURE_SSL_REDIRECT = True
+
 DATABASES={
    'default':{
       'ENGINE':'django.db.backends.postgresql_psycopg2',
