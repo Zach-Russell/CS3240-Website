@@ -194,6 +194,7 @@ ACCOUNT_ADAPTER = 'welcome.adapters.MyAccountAdapter'
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION ="none"
 AUTH_USER_MODEL = 'welcome.User'
+SOCIALACCOUNT_LOGIN_ON_GET=True
 # STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 STORAGES = {
     # ...
