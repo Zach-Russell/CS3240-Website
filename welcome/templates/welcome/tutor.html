@@ -92,7 +92,7 @@
     </ul>
       
       
-    <h2>This is {{user.first_name}}'s available times</h2>
+    <h2>{{user.first_name}}'s available times</h2>
     <ul>
       {% for timings in user.schedule_set.first.tutorTimings %}
       <li>
@@ -110,7 +110,7 @@
     </div>
 
     <div class = "profileSection requests">
-    <h2>This is {{user.first_name}}'s current request</h2>
+    <h2>{{user.first_name}}'s current request</h2>
     <ul style = "list-style-type: none;">
 
         {% for request in requests_list %}     
