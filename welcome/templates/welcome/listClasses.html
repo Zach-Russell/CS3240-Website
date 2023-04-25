@@ -52,6 +52,7 @@
 {% block content %}
 <div class = "mainListClassesContainer", style = "margin-left: 30px; margin-top: 15px;">
             {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+            {% if classesFiltered|length %}   
             <div class = "listContainer">
                 
                 {% for class in classesFiltered %}
@@ -66,6 +67,10 @@
             {% else %}
             <input class="btn btn-primary" style = "margin-left: 20px;"type="submit" value="find tutor">  
         </form>    
+            {% endif %}
+            {% else %}
+            <h1 style = "text-transform: capitalize;">There are no results for this search</h1>
+            <a class = "btn btn-primary" href="/welcome/selectClass">Search For Class Again</a>
             {% endif %}
 </div>
 {% endblock %}

@@ -63,14 +63,14 @@
       <form action="{% url 'welcome:findClass'%}" method="post">
           {% csrf_token %}
           <fieldset>
-              <legend><h1  style = "text-transform: capitalize;">Find class by Mneumonic/Number</h1></legend>
+              <legend><h1  style = "text-transform: capitalize;">Find class by mnemonic/Number</h1></legend>
               <div class="sep"></div>
               {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}       
                 <select class="dropdown" id="class" name="class">
                     {% for class in subjects %}
                         <option value = '{{class.subject}}'>{{class.subject}}</option>
                     {% endfor %}
-                    <input class="search" type = "text" placeholder = "course number (optional)" name = "crsNum"/><button class="search-icon fas fa-search"type="submit" value="Submit"></button>
+                    <input class="search" type = "text" placeholder = "Course Number (Optional)" name = "crsNum"/><button class="search-icon fas fa-search"type="submit" value="Submit"></button>
                   </select>
                 <!-- <input class="search" type = "text" placeholder = "course number (optional)" name = "crsNum"/> -->
           </fieldset>
@@ -89,7 +89,7 @@
             <legend><h1 style = "text-transform: capitalize;">Find class by name</h1></legend>
             <div class="sep"></div>
             {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}       
-            <input class="search" type = "text" placeholder = "course name" name = "crsName"/><button class="search-icon fas fa-search" type="submit" value="Submit"></button>
+            <input class="search" type = "text" placeholder = "Course Name" name = "crsName"/><button class="search-icon fas fa-search" type="submit" value="Submit"></button>
         </fieldset>
         <!-- <input class="btn btn-primary" style = " margin-top: 20px ;"type="submit" value="Submit"> -->
         </form>
