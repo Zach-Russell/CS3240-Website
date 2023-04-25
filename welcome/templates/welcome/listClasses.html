@@ -42,9 +42,9 @@
 </style>
 <body>
 <div class = "mainContainer">
-  <h1 style = "text-transform: capitalize;">Select Class</h1>
             {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
             {% if classesFiltered|length %}   
+            <h1 style = "text-transform: capitalize;">Select Class</h1>
             <div class = "listContainer">
                 
                 {% for class in classesFiltered %}
@@ -61,8 +61,8 @@
         </form>    
             {% endif %}
             {% else %}
-            <h1 style = "text-transform: capitalize;">There are no results for this search</h1>
-            <a class = "btn btn-primary" href="/welcome/selectClass">Search For Class Again</a>
+            <h2 style = "margin-left:10px; text-transform: capitalize;">There are no results for this search</h2>
+            <a class = "btn btn-primary" href="/welcome/selectClass" style = "margin-left: 10px;">Search For Class Again</a>
             {% endif %}
 </div>
 </body>
