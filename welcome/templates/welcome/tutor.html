@@ -31,7 +31,6 @@
     width:100%
   }
   .basicProfileInfo{
-    background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 20px;
@@ -68,13 +67,13 @@
   }
 </style>
 <body>
-  <h1>{{user.first_name}}'s Tutor Profile</h1>
+  <h1 style = "text-transform: capitalize;">{{user.first_name}}'s Tutor Profile</h1>
   
   <div class = "tutorProfileContainer" style = "width:100%; min-height: 70%;">
     <div class= "profileSection">
       <div class="basicProfileInfo">
         <h2>Profile Information</h2>
-        <p><strong>Name: </strong>{{user.first_name}} {{user.last_name}}</p>
+        <p style = "text-transform: capitalize;"><strong>Name: </strong>{{user.first_name}} {{user.last_name}}</p>
         <p><strong>Email: </strong>{{user.email}}</p>
         <p><strong>Current Rate: </strong> ${{user.rate}}/hr</p>
         <p><strong>Profile Type: </strong> Tutor</p>
@@ -92,7 +91,7 @@
     </ul>
       
       
-    <h2>{{user.first_name}}'s available times</h2>
+    <h2 style = "text-transform: capitalize;">{{user.first_name}}'s available times</h2>
     <ul>
       {% for timings in user.schedule_set.first.tutorTimings %}
       <li>
@@ -110,7 +109,7 @@
     </div>
 
     <div class = "profileSection requests">
-    <h2>{{user.first_name}}'s current request</h2>
+    <h2 style = "text-transform: capitalize;">{{user.first_name}}'s current request</h2>
     <ul style = "list-style-type: none;">
 
         {% for request in requests_list %}     

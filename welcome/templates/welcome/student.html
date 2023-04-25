@@ -20,9 +20,9 @@
   </head>
 </html>
 
-
+<!-- styling for student specific -->
 <style>
-  .tutorProfileContainer{
+  .studentProfileContainer{
     display: flex;
     padding-left: 20px;
   }
@@ -33,7 +33,6 @@
     width:100%
   }
   .basicProfileInfo{
-    background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 20px;
@@ -48,44 +47,44 @@
         padding: 20px;
         margin: 0;
       }
-  .tutorProfileContainer h2 {
+  .studentProfileContainer h2 {
         font-size: 28px;
         margin-top: 30px;
       }
-  .tutorProfileContainer ul{
+  .studentProfileContainer ul{
     list-style: none;
     padding: 0;
     margin: 0;
   }
-  .tutorProfileContainer li{
+  .studentProfileContainer li{
     margin: 10px 0;
   }
   
-  .tutorProfileContainer form{
+  .studentProfileContainer form{
     transition: all 0.5s ease-in-out;
     border-radius: 5px;
   }
-  .tutorProfileContainer form::before{
+  .studentProfileContainer form::before{
     content: "➤ ";
   }
 </style>
 <body>
 
-<h1>{{user.first_name}}'s Student Profile</h1>
+<h1 style = "text-transform: capitalize;">{{user.first_name}}'s Student Profile</h1>
 
 
-<div class = "tutorProfileContainer" style = "width:100%; min-height:70%">
+<div class = "studentProfileContainer" style = "width:100%; min-height:70%">
   <div class= "profileSection">
     <div class="basicProfileInfo">
       <h2>Profile Information</h2>
-      <p><strong>Name: </strong>{{user.first_name}} {{user.last_name}}</p>
+      <p style = "text-transform: capitalize;"><strong>Name: </strong>{{user.first_name}} {{user.last_name}}</p>
       <p><strong>Email: </strong>{{user.email}}</p>
       <p><strong>Profile Type: </strong> Student</p>
     </div>
   </div>
 
   <div class = "profileSection requests">
-  <h2>{{user.first_name}}'s current request</h2>
+  <h2 style = "text-transform: capitalize;">{{user.first_name}}'s Ongoing Requests</h2>
   <ul style = "list-style-type: none;">
 
       {% for request in requests_list %}     
