@@ -63,7 +63,7 @@
       <form action="{% url 'welcome:findClass'%}" method="post">
           {% csrf_token %}
           <fieldset>
-              <legend><h1>Find class by pneumonic/number</h1></legend>
+              <legend><h1  style = "text-transform: capitalize;">Find class by Mneumonic/Number</h1></legend>
               <div class="sep"></div>
               {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}       
                 <select class="dropdown" id="class" name="class">
@@ -86,7 +86,7 @@
     <form action="{% url 'welcome:findClassByName'%}" method="post">
         {% csrf_token %}
         <fieldset>
-            <legend><h1>Find class by name</h1></legend>
+            <legend><h1 style = "text-transform: capitalize;">Find class by name</h1></legend>
             <div class="sep"></div>
             {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}       
             <input class="search" type = "text" placeholder = "course name" name = "crsName"/><button class="search-icon fas fa-search" type="submit" value="Submit"></button>
