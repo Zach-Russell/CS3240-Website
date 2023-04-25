@@ -10,51 +10,6 @@
 
 {% load socialaccount %}
 
-<!-- {% load socialaccount %}
-<h1 align="Center">Welcome to A25's website</h1>
-<div class = "navigation" style = "margin:auto; width:50%; border: 2px solid rgb(35, 190, 175)">
-    <ul class="nav justify-content-end">
-
-        <li class="nav-item">
-            <a href="{% provider_login_url 'google'%}">Click here to start</a>
-            {% if user.is_authenticated %}
-                {% if user.type == "tut" %}
-                    <a href="/{{user.email}}/tutor">Profile</a>
-                {% else %}
-                    <a href="/{{user.email}}/student">Profile</a>
-                {% endif %}
-            {% endif %}
-        </li>
-      </ul>
-
-</div>
-This stuff is the older version, if need to revert then uncomment above -->
-
-
-<!-- <link rel="stylesheet" href="style.css"> -->
-
-
-
-<!-- Feel free to change anything you want! -->
-<!-- <body style="background-color:#D3D3D3;">
-    <div class="text-primary">
-        <h1 class="Display-1" align="Center">Welcome to A25's website</h1>
-    </div>
-
-    <div class="p-3 mb-2 bg-light text-dark" style = "margin:auto; width:50%; border: 2px solid rgb(105, 107, 107)">
-        <div class="d-flex align-items-center flex-column bd-highlight mb-3">
-                <div class="p-2 bd-warning"><a href="{% provider_login_url 'google'%}">Click here to start</a></div>
-                {% if user.is_authenticated %}
-                            {% if user.type == "tut" %}
-                                <div class="p-2 bd-highlight"><a href="/{{user.email}}/tutor">Profile</a></div>
-                            {% else %}
-                                <div class="p-2 bd-highlight"><a href="/{{user.email}}/student">Profile</a></div>
-                            {% endif %}
-                        {% endif %}
-        </div>
-    </div>
-</body> -->
-
 {% block content %}
 
 <link rel="stylesheet" href="{% static 'welcome/style.css' %}">
