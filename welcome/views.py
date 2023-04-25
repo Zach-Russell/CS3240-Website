@@ -123,15 +123,18 @@ def finishSignup(request):
 
 def findClassByName(request):
     courseName = request.POST['crsName']
-    apiUrl = 'https://sisuva.admin.virginia.edu/psc/ihprd/UVSS/SA/s/WEBLIB_HCX_CM.H_CLASS_SEARCH.FieldFormula.IScript_ClassSearch?institution=UVA01&term=1232&keyword=' + courseName
-    courses = requests.get(apiUrl).json()
-    res = []
-    already_seen = set()
-    for course in courses:
-        if(course['crse_id'] in already_seen):
-            continue
-        already_seen.add(course['crse_id'])
-        res.append(course)
+    if courseName == "":
+        res = []
+    else:
+        apiUrl = 'https://sisuva.admin.virginia.edu/psc/ihprd/UVSS/SA/s/WEBLIB_HCX_CM.H_CLASS_SEARCH.FieldFormula.IScript_ClassSearch?institution=UVA01&term=1232&keyword=' + courseName
+        courses = requests.get(apiUrl).json()
+        res = []
+        already_seen = set()
+        for course in courses:
+            if(course['crse_id'] in already_seen):
+                continue
+            already_seen.add(course['crse_id'])
+            res.append(course)
     return render(request,'welcome/listClasses.html',{'classesFiltered' : res})
 
 class selectTimingsView(generic.ListView):
