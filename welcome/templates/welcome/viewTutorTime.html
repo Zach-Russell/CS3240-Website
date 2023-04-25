@@ -43,6 +43,7 @@
 <body>
     <div class = "mainContainer", >
         {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        {% if tutorAvailableTimes|length %}    
         <h1 style = "text-transform: capitalize;">request one of {{tutorUser.first_name}}'s time</h1>
         <div class = "listContainer">
             {% for times in tutorAvailableTimes %}
@@ -53,8 +54,11 @@
             {% endfor %}    
             <input class="btn btn-primary" type="submit" value="Make Request">  
         </div>
-        
-    </form>    
+    </form>  
+    {% else %}  
+    <h2 style = "text-transform: capitalize; margin-left:10px;">{{tutorUser.first_name}}   currently has no available times</h2>
+    <a style =  "margin-left:10px;" class = "btn btn-primary" href="/welcome/selectClass">Find another class</a>
+      {% endif %}
     </div>
 </body>
 
