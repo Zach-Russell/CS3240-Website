@@ -203,3 +203,14 @@ STORAGES = {
     },
 }
 
+
+# EMAIL_HOST_USER = 'tutormedjango@gmail.com'
+# EMAIL_HOST_PASSWORD = 'admin123!'
+
+# django_project/settings.py
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"  
+EMAIL_HOST = "smtp.sendgrid.net"  
+EMAIL_HOST_USER = "apikey"  
+EMAIL_HOST_PASSWORD = "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"  
+EMAIL_PORT = 587  
+EMAIL_USE_TLS = True  
