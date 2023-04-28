@@ -93,7 +93,7 @@
       <li>
         <form action="{% url 'welcome:deleteRequest' request.id%}" method="post"> 
           {% csrf_token %}
-        <label>{{request.student.first_name}} {{request.student.last_name}} has requested {{request.tutor.first_name}} {{request.tutor.last_name}} for the class {{request.course}} on {{request.time}}</label>
+        <label>Requested {{request.tutor.first_name}} {{request.tutor.last_name}} ({{request.tutor.email}}) for {{request.course}} on {{request.time}}</label>
         <input class="btn btn-danger" type="submit" value=Delete name = "choice">
       </form>
       </li>
@@ -109,7 +109,7 @@
   <li>
     <form action="{% url 'welcome:deleteRequest' request.id %}" method="post"> 
       {% csrf_token %}
-      <label> Tutor {{request.tutor.first_name}} {{request.tutor.last_name}} for the class {{request.course}} on {{request.time}} </label>
+      <label> Tutor {{request.tutor.first_name}} {{request.tutor.last_name}} ({{request.tutor.email}}) for {{request.course}} on {{request.time}} </label>
       <input class="btn btn-danger" type="submit" value=Delete name = "choice">  
       </form>
   </li></ul>
@@ -125,7 +125,7 @@
   <li>
     <form action="{% url 'welcome:deleteRequest' request.id %}" method="post"> 
       {% csrf_token %}
-      <label> Tutor {{request.tutor.first_name}} {{request.tutor.last_name}} for the class {{request.course}} on {{request.time}} </label>
+      <label> Tutor {{request.tutor.first_name}} {{request.tutor.last_name}} ({{request.tutor.email}}) for {{request.course}} on {{request.time}} </label>
       <input class="btn btn-danger" type="submit" value=Delete name = "choice">  
       </form>
   </li></ul>
