@@ -3,7 +3,7 @@ from . import views
 
 app_name = 'welcome'
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='index'),
+    path('', views.index, name='index'),
     path('googlelogin/type/', views.selectTypeView.as_view(), name='selectType'),
     path('<str:id>/tutor/', views.tutorView.as_view(), name='tutor'),
     path('<str:id>/student/', views.studentView.as_view(), name='student'),
@@ -21,5 +21,7 @@ urlpatterns = [
     path('changeRate/', views.changeRateView.as_view(), name ='changeRate'),
     path('changeTutorRate/', views.changeTutorRate, name = 'changeTutorRate'),
     path('<int:request_id>/deleteRequest/', views.deleteRequest, name='deleteRequest'),
-     path('<str:class_to_delete>/deleteClassTutor', views.deleteClassTutor, name='deleteClassTutor'),
+    path('<str:class_to_delete>/deleteClassTutor', views.deleteClassTutor, name='deleteClassTutor'),
+    # path('contact/', views.contact, name = 'contact'),
+
 ]
