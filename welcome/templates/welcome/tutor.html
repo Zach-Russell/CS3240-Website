@@ -118,7 +118,7 @@
         <li>
           <form action="{% url 'welcome:requestChoice' request.id%}" method="post"> 
             {% csrf_token %}
-          <label>{{request.student.first_name}} {{request.student.last_name}} has requested a tutor for the class {{request.course}} on {{request.time}}</label>
+          <label>{{request.student.first_name}} {{request.student.last_name}} ({{request.student.email}}) has requested for {{request.course}} on {{request.time}}</label>
           <input class="btn btn-success" type="submit" value="Accept" name = "choice">  
           <input class="btn btn-danger" type="submit" value="Decline" name = "choice">  
         </form>
@@ -136,7 +136,7 @@
     <li>
       <form action="{% url 'welcome:deleteRequest' request.id %}" method="post"> 
         {% csrf_token %}
-        <label> {{request.student.first_name}} {{request.student.last_name}} for the class {{request.course}} on {{request.time}} </label>
+        <label> {{request.student.first_name}} {{request.student.last_name}} ({{request.student.email}}) for the class {{request.course}} on {{request.time}} </label>
         <input class="btn btn-danger" type="submit" value=Delete name = "choice">  
         </form>
     </li></ul>
