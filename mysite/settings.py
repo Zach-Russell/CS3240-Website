@@ -80,6 +80,15 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
+
+#Secure cookies
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+#Redirect HTTP -> HTTPS
+SECURE_SSL_REDIRECT = True
+
 DATABASES={
    'default':{
       'ENGINE':'django.db.backends.postgresql_psycopg2',
@@ -185,6 +194,7 @@ ACCOUNT_ADAPTER = 'welcome.adapters.MyAccountAdapter'
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION ="none"
 AUTH_USER_MODEL = 'welcome.User'
+SOCIALACCOUNT_LOGIN_ON_GET=True
 # STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 STORAGES = {
     # ...

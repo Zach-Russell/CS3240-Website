@@ -4,10 +4,9 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 import requests
-from .models import User, Schedule, Request
 from django.core.mail import send_mail
 from django.contrib import messages
-
+from .models import User, Schedule, Request, classRequest
 
 # Create your views here.
 
@@ -54,6 +53,12 @@ class tutorView(generic.ListView):
     context_object_name = 'requests_list'
     def get_queryset(self):
         return Request.objects.all()
+
+class tutorRequestsView(generic.ListView):
+    template_name = 'welcome/tutorRequests.html'
+    context_object_name = 'requests_list'
+    def get_queryset(self):
+          return classRequest.objects.all().order_by('-upvotes')
 
 class studentView(generic.ListView):
     template_name = 'welcome/student.html'
@@ -155,11 +160,18 @@ def finishSignup(request):
 
 def findClassByName(request):
     courseName = request.POST['crsName']
-    apiUrl = 'https://sisuva.admin.virginia.edu/psc/ihprd/UVSS/SA/s/WEBLIB_HCX_CM.H_CLASS_SEARCH.FieldFormula.IScript_ClassSearch?institution=UVA01&term=1232&keyword=' + courseName
-    courses = requests.get(apiUrl).json()
-    res = []
-    for course in courses:
-        res.append(course)
+    if courseName == "":
+        res = []
+    else:
+        apiUrl = 'https://sisuva.admin.virginia.edu/psc/ihprd/UVSS/SA/s/WEBLIB_HCX_CM.H_CLASS_SEARCH.FieldFormula.IScript_ClassSearch?institution=UVA01&term=1232&keyword=' + courseName
+        courses = requests.get(apiUrl).json()
+        res = []
+        already_seen = set()
+        for course in courses:
+            if(course['crse_id'] in already_seen):
+                continue
+            already_seen.add(course['crse_id'])
+            res.append(course)
     return render(request,'welcome/listClasses.html',{'classesFiltered' : res})
 
 class selectTimingsView(generic.ListView):
@@ -200,6 +212,49 @@ def requestTutorTime(request, user_id, tutor_id, course):
     else:
         url +='/tutor/'
     return HttpResponseRedirect((url))
+def requestTutorForClass(request, classReq):
+    try:
+        newClassReq = classRequest.objects.get(course = classReq)
+        if request.user.email not in newClassReq.studentRequested:
+            newClassReq.upvotes += 1
+            newClassReq.studentRequested.append(request.user.email)
+    except:
+        newClassReq = classRequest(course = classReq, studentRequested = [])
+        newClassReq.studentRequested.append(request.user.email)
+    newClassReq.save()
+    url = '/welcome/tutorRequests'
+    return HttpResponseRedirect((url))
+
+def tutorRequestAction(request, request_id, course):
+    choice = request.POST.get('choice')
+    ClassReq = classRequest.objects.get(pk = request_id)
+    if choice == 'Request':
+        if request.user.email not in ClassReq.studentRequested:
+            ClassReq.upvotes += 1
+            ClassReq.studentRequested.append(request.user.email)
+        url = '/welcome/tutorRequests'
+        ClassReq.save()
+    elif choice == 'Accept':
+        try:
+            schedule = Schedule.objects.get(User = request.user)
+        except:
+            schedule = Schedule(schedule = [], tutorTimings = [], User = request.user)
+            schedule.save()
+        if(course not in schedule.schedule and request.user.email not in ClassReq.tutorsAlreadyAccepted):
+            schedule.schedule.append(course)
+            ClassReq.tutorsAlreadyAccepted.append(request.user.email)
+            ClassReq.tutorsAccepted += 1
+            url = '/' + request.user.email + '/tutor/'  
+        else:
+            url = '/welcome/tutorRequests'  
+        schedule.save()
+        ClassReq.save()
+    elif choice == 'Delete':
+        ClassReq = classRequest.objects.get(pk = request_id)
+        ClassReq.delete()
+        url = '/welcome/tutorRequests'
+    return HttpResponseRedirect((url))
+
 
 def confirmTimings(request, user_id):
     user = User.objects.get(pk=user_id)
@@ -227,7 +282,6 @@ def confirmTimings(request, user_id):
 def requestChoice(request, request_id):
     req = Request.objects.get(pk = request_id)
     choice = request.POST.get('choice')
-    print(choice)
     if choice == 'Accept':
         req.accepted='acc'
     else:
@@ -276,12 +330,18 @@ def deleteRequest(request,request_id):
 def changeTutorRate(request):
     user = request.user
     newRate = request.POST['newRate']
-    user.rate = newRate
-    user.save()
-    url = '/' + request.user.email + '/tutor/'
-    return HttpResponseRedirect((url))
 
-
+    if newRate == "":
+        return render(request, 'welcome/changeRate.html', {
+            'comments': User,
+            'error_message': "Please Enter a Rate Before Clicking Submit",
+        })
+    else:
+        user.rate = newRate
+        user.save()
+        url = '/' + request.user.email + '/tutor/'
+        return HttpResponseRedirect((url))
+        
 class contactView(generic.ListView):
     template_name = 'welcome/contact.html'
     def get_queryset(self):
@@ -314,5 +374,3 @@ class contactView(generic.ListView):
 #         messages.success(request, 'Your message has been sent successfully!')
 
 #     return render(request, 'welcome/contact.html', {})
-
-

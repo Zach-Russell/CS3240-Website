@@ -23,5 +23,8 @@ urlpatterns = [
     path('<int:request_id>/deleteRequest/', views.deleteRequest, name='deleteRequest'),
     path('<str:class_to_delete>/deleteClassTutor', views.deleteClassTutor, name='deleteClassTutor'),
     # path('contact/', views.contact, name = 'contact'),
+    path('<str:classReq>/requestTutorForClass/', views.requestTutorForClass, name='requestTutorForClass'),
+    path('tutorRequests/', views.tutorRequestsView.as_view(), name ='tutorRequests'),
+    path('<int:request_id>/<str:course>/tutorRequestAction/', views.tutorRequestAction, name='tutorRequestAction'),
 
 ]

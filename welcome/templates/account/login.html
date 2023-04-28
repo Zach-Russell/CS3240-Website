@@ -24,7 +24,7 @@
 
     <div class="socialaccount_ballot">
 
-      <ul class="socialaccount_providers">
+      <ul style = "list-style: none;"class="socialaccount_providers">
         {% include "socialaccount/snippets/provider_list.html" with process="login" %}
       </ul>
 
@@ -46,7 +46,33 @@
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
       <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+
     </form>
+    <a href="{{ signup_url }}" style = "display: block;
+    width: 100%;
+    padding: 10px 0px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top:10px;
+    text-align: center;
+    text-decoration: none;">Sign Up</a>
+    <a href="/" style = "display: block;
+    width: 100%;
+    padding: 10px 0px;
+    background-color: #4c4caf;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top:10px;
+    text-align: center;
+    text-decoration: none;">Go Back Home</a>
+
   </div>
 
 </div>

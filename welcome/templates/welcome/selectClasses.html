@@ -15,45 +15,6 @@
   </head>
 </html>
 
-<!-- HEADER -->
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
-    <img src="{% static 'welcome/images/tutormelogo.jpeg' %}" width="50" height="50" alt="Tutor Me Logo">
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="/welcome">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="">Contact Us</a>
-          </li>
-          <li class="nav-item">
-            <a class="btn btn-primary" href="{% url 'account_logout' %}">Log Out</a>
-          </li>
-        </ul>
-      </div>
-  </div>
-  <div class="collapse" id="sidebar">
-    <div class="bg-light" style="width: 200px;">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item active">Menu</li>
-        <li class="list-group-item">Profile</li>
-        <li class="list-group-item">Messages</li>
-        <li class="list-group-item">Settings</li>
-        <li class="list-group-item">Log Out</li>
-      </ul>
-    </div>
-  </div>
-</nav> -->
-
-
 {% block content %}
 
 <div class="space"></div>
@@ -63,14 +24,14 @@
       <form action="{% url 'welcome:findClass'%}" method="post">
           {% csrf_token %}
           <fieldset>
-              <legend><h1>Find class by pneumonic/number</h1></legend>
+              <legend><h1  style = "text-transform: capitalize;">Find class by mnemonic/Number</h1></legend>
               <div class="sep"></div>
               {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}       
                 <select class="dropdown" id="class" name="class">
                     {% for class in subjects %}
                         <option value = '{{class.subject}}'>{{class.subject}}</option>
                     {% endfor %}
-                    <input class="search" type = "text" placeholder = "course number (optional)" name = "crsNum"/><button class="search-icon fas fa-search"type="submit" value="Submit"></button>
+                    <input class="search" type = "text" placeholder = "Course Number (Optional)" name = "crsNum"/><button class="search-icon fas fa-search"type="submit" value="Submit"></button>
                   </select>
                 <!-- <input class="search" type = "text" placeholder = "course number (optional)" name = "crsNum"/> -->
           </fieldset>
@@ -86,10 +47,10 @@
     <form action="{% url 'welcome:findClassByName'%}" method="post">
         {% csrf_token %}
         <fieldset>
-            <legend><h1>Find class by name</h1></legend>
+            <legend><h1 style = "text-transform: capitalize;">Find class by name</h1></legend>
             <div class="sep"></div>
             {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}       
-            <input class="search" type = "text" placeholder = "course name" name = "crsName"/><button class="search-icon fas fa-search" type="submit" value="Submit"></button>
+            <input class="search" type = "text" placeholder = "Course Name" name = "crsName"/><button class="search-icon fas fa-search" type="submit" value="Submit"></button>
         </fieldset>
         <!-- <input class="btn btn-primary" style = " margin-top: 20px ;"type="submit" value="Submit"> -->
         </form>
@@ -99,44 +60,3 @@
 <div class="space"></div>
 
 {% endblock %}
-
-<!--Footer-->
-
-<!-- <footer class="footer-bottom bg-dark text-white">
-  <br>
-  <div class="container d-flex justify-content-center py-4">
-    <div class="row">
-      <div class="col-md-6">
-        <h4>About Us</h4>
-        <p>Tutor Me serves as a platform to connect tutors and students efficiently at UVA!</p>
-        <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
-
-        <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee" href="#!" role="button"><i class="fab fa-twitter"></i></a>
-        <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac" href="#!" role="button"><i class="fab fa-instagram"></i></a>
-        <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
-  
-      </div>
-      <div class="col-md-3">
-        <h4>Links</h4>
-        <ul class="list-unstyled">
-          <li><a href="/welcome">Home</a></li>
-          <li><a href="#">Tutors</a></li>
-        </ul>
-      </div>
-      <div class="col-md-3">
-        <h4>Contact Us</h4>
-        <ul class="list-unstyled">
-          <li><i class="fa fa-envelope-o" aria-hidden="true"></i> info@tutorme.com</li>
-          <li><i class="fa fa-phone" aria-hidden="true"></i> 1-800-800-8000</li>
-          <li><i class="fa fa-map-marker" aria-hidden="true"></i> 123 McCormick Rd, Charlottesville, VA 22903</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  
-  <div class = "text-center" style="background-color: rgba(0, 0, 0, 0.2);">
-      <br>
-    <p>&copy; 2023 Tutor Me</p>
-  </div>
-
-</footer> -->
