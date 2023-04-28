@@ -66,3 +66,10 @@ class Request(models.Model):
    course = models.CharField(max_length=254, null=True, blank=True)
    time = models.CharField(max_length=254, null=True, blank=True)
    accepted = models.CharField(max_length=3, choices=[('acc', 'accept'),('dec', 'decline'), ("", "none")], default = "")
+
+class classRequest(models.Model):
+    course = models.CharField(max_length=254, null=True, blank=True)
+    tutorsAccepted = models.IntegerField(default=0)
+    tutorsAlreadyAccepted = ArrayField(models.CharField(max_length=50, blank = True), default = [])
+    upvotes = models.IntegerField(default=1)
+    studentRequested = ArrayField(models.CharField(max_length=50, blank = True))

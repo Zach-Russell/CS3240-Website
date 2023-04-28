@@ -89,9 +89,23 @@
     margin-top: 10px;" type="submit" value="Request"> 
   </form> 
     {% else %}
-    <h1 style =  "margin-left:10px;" ">There are currently no tutors for this class</h1>
-    <a style = "width: fit-content;
-    display: block;
+    <h1 style =  "margin-left:10px; text-transform: capitalize;" >There are currently no tutors for this class</h1>
+    <form action="{% url 'welcome:requestTutorForClass' classReq %}" method="post"> 
+      {% csrf_token %}
+      <input class="btn btn-primary" style = "display: block;
+    padding: 10px;
+    background-color: #4CAF50;;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    width:175px;
+    margin: 10px 0px 10px 10px;" type="submit" value="Request Tutor"> 
+    </form> 
+    <a style = "display: block;
     padding: 10px;
     background-color: #008FFF;
     color: white;
@@ -101,7 +115,8 @@
     font-size: 16px;
     text-align: center;
     text-decoration: none;
-    margin: 10px 0px 10px 10px;"class = "btn btn-primary" href="/welcome/selectClass">Find another class</a>
+    width:175px;
+    margin: 10px 0px 10px 10px;"class = "btn btn-primary" href="/welcome/selectClass">Find Another class</a>
       {% endif %}
 </div>
 
