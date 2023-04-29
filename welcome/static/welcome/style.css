@@ -5,30 +5,38 @@
     border-radius: 15px;
     outline: none;
   
-  }
+}
   
   /* .btn-primary:hover {
     box-shadow: inset 0 0 0 20rem var(--darken-1);
   } */
 
-  html, body {
-    min-height: 100vh;
-  }
+html, body {
+  min-height: 100vh;
+}
 
-  *{
-    font-family: 'Montserrat', sans-serif;
-  }
+*{
+  font-family: 'Montserrat', sans-serif;
+}
 
-  /*-------HOME PAGE - INTRO SECTION------------*/
+/*------- NAV BAR active link ------------*/
+.nav-item.active a {
+  position: relative;
+  color:white !important;
+}
   
-  /* body {
-      color: #828bb2;
-      font-family: "Roboto", sans-serif;
-      font-size: 14px;
-      font-weight: 300;
-      line-height: 1.625em;
-      position: relative; } */
-    
+.nav-item.active a::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: rgb(173, 173, 177);  
+}
+  
+/*-------HOME PAGE - INTRO SECTION------------*/
+
   .intro-title {
       min-height: 100vh;
       /* width: 100%; */ 
@@ -171,8 +179,6 @@
     padding-bottom: 3rem;
     width: 50%;
     margin: 0 auto;
-  
-  
   }
   
   .about-icons .row {
@@ -226,12 +232,13 @@
 /* course pneumonic */
 .dropdown {
   width: 150px;
-  /* border-right: 2px solid #dde2f1; */
   position: relative;
   cursor: pointer;
-  /* border-radius: 5px; */
   padding: 1rem;
-  /* color: #6f768d; */
+  border: 2px solid #0575e680;
+  background-color: #f2f2f2;
+  color: #000000;
+
 
 }
 
@@ -242,16 +249,24 @@
   padding: 1rem;
   /* border-radius: 5px; */
   left:5px;
+  border:3px solid #0575e680;
+  background-color: #f2f2f2;
+  color: #000000;
 }
 
 /* search icon */
 .search-icon {
   width: 50px;
   height: 100%;
-  padding: 1rem;
+  padding-top: 1.2rem;
+  padding-bottom: 1.3rem;
   background-color:#0575e680;
   color:white;
-  border-radius: 0 0.375em 0.375em 0;
+  border: none;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
   outline: none;
   text-decoration: none;
 }
@@ -298,7 +313,42 @@
   height: 100vh;
   min-height: 100%;
   position: relative;
+  overflow-y: auto; 
 }
+
+table {
+  font-size: 14px;
+  margin: 0 auto;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Time */
+td:first-child::after {
+  content: "\f017";
+  font-family: FontAwesome;
+  margin-left: 5px;
+}
+
+th {
+  background-color: #5ba0e6;
+  color: white;
+}
+
+td {
+  border: 1px solid #ddd;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+
 /*-------FOOTER------------*/
   
 .footer {
