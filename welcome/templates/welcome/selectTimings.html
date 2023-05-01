@@ -18,6 +18,46 @@
     <link rel="stylesheet" href="{% static 'welcome/style.css' %}">
   </head>
 </html>
+<style>
+    .times-container {
+    height: 100vh;
+    min-height: 100%;
+    position: relative;
+    overflow-y: auto; 
+    }
+
+    table {
+    font-size: 14px;
+    margin: 0 auto;
+    }
+
+    th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    }
+
+    /* Time */
+    td:first-child::after {
+    content: "\f017";
+    font-family: FontAwesome;
+    margin-left: 5px;
+    }
+
+    th {
+    background-color: #5ba0e6;
+    color: white;
+    }
+
+    td {
+    border: 1px solid #ddd;
+    }
+
+    input[type="checkbox"] {
+    transform: scale(1.5);
+    cursor: pointer;
+    }
+</style>
 
 <div class="space"></div>
 
