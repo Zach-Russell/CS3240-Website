@@ -328,11 +328,11 @@ th, td {
 }
 
 /* Time */
-td:first-child::after {
+/* td:first-child::after {
   content: "\f017";
   font-family: FontAwesome;
   margin-left: 5px;
-}
+} */
 
 th {
   background-color: #5ba0e6;
