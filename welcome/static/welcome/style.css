@@ -315,7 +315,7 @@ html, body {
   position: relative;
   overflow-y: auto; 
 }
-
+/* 
 table {
   font-size: 14px;
   margin: 0 auto;
@@ -327,12 +327,12 @@ th, td {
   text-align: center;
 }
 
-/* Time */
-/* td:first-child::after {
+td:first-child::after {
+  td:first-child::after {
   content: "\f017";
   font-family: FontAwesome;
   margin-left: 5px;
-} */
+} 
 
 th {
   background-color: #5ba0e6;
@@ -346,7 +346,7 @@ td {
 input[type="checkbox"] {
   transform: scale(1.5);
   cursor: pointer;
-}
+} */
 
 
 /*-------FOOTER------------*/
