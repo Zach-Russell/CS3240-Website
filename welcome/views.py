@@ -209,8 +209,11 @@ def requestTutorTime(request, user_id, tutor_id, course):
     tutorSchedule = Schedule.objects.get(User=tutorUser)
     time = request.POST.get('tutorTime')
     user = User.objects.get(pk=user_id)
-    request = Request(student = user, tutor = tutorUser, course = course, time = time)
-    request.save()
+    try:
+        request = Request.objects.get(student = user, tutor = tutorUser, course = course, time = time)
+    except:             
+        request = Request(student = user, tutor = tutorUser, course = course, time = time)
+        request.save()
     url = '/' + user.email
     if(user.type == 'stu'):
         url += '/student/'
