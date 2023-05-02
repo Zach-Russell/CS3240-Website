@@ -25,7 +25,6 @@
     padding-left: 20px;
     margin-top: 50px;
     margin-bottom: 50px;
-    height: 100%;
   }
   .profileSection{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -39,9 +38,7 @@
     padding: 20px;
     margin-top: 10px;
     text-align: left;
-    width: fit-content;
-    max-width: 500px;
-    word-wrap: break-word;
+    width: fit-content
   }
    h1 {
         background-color: #2c3e50;
@@ -82,8 +79,6 @@
         <p><strong>Email: </strong>{{user.email}}</p>
         <p><strong>Current Rate: </strong> ${{user.rate}}/hr</p>
         <p><strong>Profile Type: </strong> Tutor</p>
-        <p class="bio"><strong>Bio: </strong>{{user.bio}}</p>
-        <a class="btn btn-primary" class="btn" href="/welcome/addBio">Edit bio</a>
       </div>
       <div class = "profileInfo" >
         <h2>Current Classes Available To Tutor</h2>
