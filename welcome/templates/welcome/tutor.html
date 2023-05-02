@@ -25,6 +25,7 @@
     padding-left: 20px;
     margin-top: 50px;
     margin-bottom: 50px;
+    height: 100%;
   }
   .profileSection{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -38,7 +39,9 @@
     padding: 20px;
     margin-top: 10px;
     text-align: left;
-    width: fit-content
+    width: fit-content;
+    max-width: 500px;
+    word-wrap: break-word;
   }
    h1 {
         background-color: #2c3e50;
@@ -64,6 +67,9 @@
     transition: all 0.5s ease-in-out;
     border-radius: 5px;
   }
+  .tutorProfileContainer form::before{
+    content: "➤ ";
+  }
 </style>
 <body>
   <h1 style = "text-transform: capitalize;">{{user.first_name}}'s Tutor Profile</h1>
@@ -76,6 +82,8 @@
         <p><strong>Email: </strong>{{user.email}}</p>
         <p><strong>Current Rate: </strong> ${{user.rate}}/hr</p>
         <p><strong>Profile Type: </strong> Tutor</p>
+        <p class="bio"><strong>Bio: </strong>{{user.bio}}</p>
+        <a class="btn btn-primary" class="btn" href="/welcome/addBio">Edit bio</a>
       </div>
       <div class = "profileInfo" >
         <h2>Current Classes Available To Tutor</h2>
@@ -83,10 +91,8 @@
       {% for class in user.schedule_set.first.schedule %}
       <form action="{% url 'welcome:deleteClassTutor' class %}" method="post"> 
         {% csrf_token %}
-        <div style="display: flex; align-items: center;">
-        <label>➤ {{class}} </label>
-        <input style = "margin-left: 5px; margin-right: 5px;" class="btn btn-danger" type="submit" value="Delete" name = "choice">  
-        </div>
+        <label> {{class}} </label>
+        <input class="btn btn-danger" type="submit" value="Delete" name = "choice">  
         </form>
       {% endfor %}
     </ul>
@@ -98,7 +104,7 @@
       <li>
         <form action="{% url 'welcome:deleteTime' timings %}" method="post"> 
           {% csrf_token %}
-          <label>➤ {{timings}} </label>
+          <label> {{timings}} </label>
           <input class="btn btn-danger" type="submit" value="Delete" name = "choice">  
           </form>
       </li>
@@ -119,11 +125,9 @@
         <li>
           <form action="{% url 'welcome:requestChoice' request.id%}" method="post"> 
             {% csrf_token %}
-            <div style="display: flex; align-items: center;">
-          <label>➤ {{request.student.first_name}} {{request.student.last_name}} ({{request.student.email}}) has requested for {{request.course}} on {{request.time}}</label>
-          <input style = "margin-left: 5px; margin-right: 5px;"class="btn btn-success" type="submit" value="Accept" name = "choice">  
-          <input style = "margin-right: 5px;"class="btn btn-danger" type="submit" value="Decline" name = "choice">  
-          </div>
+          <label>{{request.student.first_name}} {{request.student.last_name}} ({{request.student.email}}) has requested for {{request.course}} on {{request.time}}</label>
+          <input class="btn btn-success" type="submit" value="Accept" name = "choice">  
+          <input class="btn btn-danger" type="submit" value="Decline" name = "choice">  
         </form>
         </li>
 
@@ -137,13 +141,10 @@
     {% if request.accepted == 'acc' %} 
     <ul style = "list-style-type: none;">
     <li>
-      
       <form action="{% url 'welcome:deleteRequest' request.id %}" method="post"> 
         {% csrf_token %}
-        <div style="display: flex; align-items: center;">
-        <label>➤ {{request.student.first_name}} {{request.student.last_name}} ({{request.student.email}}) for the class {{request.course}} on {{request.time}} </label>
-        <input style = "margin-left: 5px; margin-right: 5px;" class="btn btn-danger" type="submit" value=Delete name = "choice">  
-      </div>
+        <label> {{request.student.first_name}} {{request.student.last_name}} ({{request.student.email}}) for the class {{request.course}} on {{request.time}} </label>
+        <input class="btn btn-danger" type="submit" value=Delete name = "choice">  
         </form>
     </li></ul>
     
