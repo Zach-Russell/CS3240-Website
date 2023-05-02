@@ -26,5 +26,7 @@ urlpatterns = [
     path('<str:classReq>/requestTutorForClass/', views.requestTutorForClass, name='requestTutorForClass'),
     path('tutorRequests/', views.tutorRequestsView.as_view(), name ='tutorRequests'),
     path('<int:request_id>/<str:course>/tutorRequestAction/', views.tutorRequestAction, name='tutorRequestAction'),
+    path('addBio/', views.addBioView.as_view(), name ='addBio'),
+    path('addTutorBio/', views.addTutorBio, name ='addTutorBio'),
 
 ]
