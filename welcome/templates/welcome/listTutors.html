@@ -13,6 +13,9 @@
 
 {% block content %}
     <style>
+    .mainListClassesContainer{
+      height: 100%;
+    }
     table {
       font-family: arial, sans-serif;
       margin-left: 20px;
@@ -45,6 +48,7 @@
               <th>Email</th>
               <th>Tutor Rate</th>
               <th>Times Available</th>
+              <th>Tutor Bio</th>
             </tr>
         {% for schedule in schedules %}
         {% if schedule.User.type == 'tut' %}
@@ -60,7 +64,7 @@
             </td>
             <td>
               ${{schedule.User.rate}}/hr
-          </td>
+            </td>
             <td>
               <ul style = "list-style-type: none;">
                 {% for timings in schedule.tutorTimings %}
@@ -69,6 +73,9 @@
                 </li>
                 {% endfor %}
               </ul>
+            </td>
+            <td>
+              {{schedule.User.bio}}
             </td>
         </tr> 
         {% endif %}

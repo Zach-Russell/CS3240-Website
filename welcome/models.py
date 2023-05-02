@@ -46,6 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     type = models.CharField(max_length=3, choices=[('tut', 'tutor'),('stu', 'student')], default = "")
     classes_signed_up = set()
     rate = models.DecimalField(max_digits=5, decimal_places = 2, default = 5.00)
+    bio = models.TextField(null=True, blank=True, default = 'No bio yet')
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = ['type']
