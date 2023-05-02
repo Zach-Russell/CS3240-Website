@@ -70,6 +70,6 @@ class Request(models.Model):
 class classRequest(models.Model):
     course = models.CharField(max_length=254, null=True, blank=True)
     tutorsAccepted = models.IntegerField(default=0)
-    tutorsAlreadyAccepted = ArrayField(models.CharField(max_length=50, blank = True), default = [])
+    tutorsAlreadyAccepted = ArrayField(models.CharField(max_length=50, blank = True))
     upvotes = models.IntegerField(default=1)
     studentRequested = ArrayField(models.CharField(max_length=50, blank = True))
