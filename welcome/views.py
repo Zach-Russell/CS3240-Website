@@ -71,11 +71,6 @@ class changeRateView(generic.ListView):
     def get_queryset(self):
         return 'changeRate success'
 
-class addBioView(generic.ListView):
-    template_name = 'welcome/addBio.html'
-    def get_queryset(self):
-        return 'addBio success'
-
 class selectClassView(generic.ListView):
     template_name = 'welcome/selectClasses.html'
 
@@ -209,8 +204,11 @@ def requestTutorTime(request, user_id, tutor_id, course):
     tutorSchedule = Schedule.objects.get(User=tutorUser)
     time = request.POST.get('tutorTime')
     user = User.objects.get(pk=user_id)
-    request = Request(student = user, tutor = tutorUser, course = course, time = time)
-    request.save()
+    try:
+        request = Request.objects.get(student = user, tutor = tutorUser, course = course, time = time)
+    except:             
+        request = Request(student = user, tutor = tutorUser, course = course, time = time)
+        request.save()
     url = '/' + user.email
     if(user.type == 'stu'):
         url += '/student/'
@@ -343,21 +341,6 @@ def changeTutorRate(request):
         })
     else:
         user.rate = newRate
-        user.save()
-        url = '/' + request.user.email + '/tutor/'
-        return HttpResponseRedirect((url))
-
-def addTutorBio(request):
-    user = request.user
-    newBio = request.POST['bio']
-
-    if newBio == "":
-        return render(request, 'welcome/addBio.html', {
-            'comments': User,
-            'error_message': "Please Enter a Bio Before Clicking Submit",
-        })
-    else:
-        user.bio = newBio
         user.save()
         url = '/' + request.user.email + '/tutor/'
         return HttpResponseRedirect((url))
