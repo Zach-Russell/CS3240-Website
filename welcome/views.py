@@ -222,7 +222,7 @@ def requestTutorForClass(request, classReq):
             newClassReq.upvotes += 1
             newClassReq.studentRequested.append(request.user.email)
     except:
-        newClassReq = classRequest(course = classReq, studentRequested = [])
+        newClassReq = classRequest(course = classReq, studentRequested = [], tutorsAlreadyAccepted = [])
         newClassReq.studentRequested.append(request.user.email)
     newClassReq.save()
     url = '/welcome/tutorRequests'
