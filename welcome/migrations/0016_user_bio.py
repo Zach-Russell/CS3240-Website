@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("welcome", "0014_classrequest_tutorsalreadyaccepted"),
+        ("welcome", "0015_alter_classrequest_tutorsalreadyaccepted"),
     ]
 
     operations = [
