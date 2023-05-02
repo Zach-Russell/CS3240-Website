@@ -4,13 +4,44 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 import requests
+from django.core.mail import send_mail
+from django.contrib import messages
 from .models import User, Schedule, Request, classRequest
+
 # Create your views here.
 
 class IndexView(generic.ListView):
     template_name = 'welcome/index.html'
     def get_queryset(self):
         return "index success"
+
+
+def index(request):
+    if request.method=='POST':
+        name = request.POST.get('cf-name')
+        about = request.POST.get('cf-about')
+        email = request.POST.get('cf-email')
+        subject = request.POST.get('cf-number')
+        message = request.POST.get('cf-message')
+
+        data = {
+            'name': name,
+            'email': email,
+            'about': about,
+            'subject': subject,
+            'message': message
+        }
+        message = '''
+        From:\n\t\t{}\n
+        Email:\n\t\t{}\n
+        About:\n\t\t{}\n
+        Subject:\n\t\t{}\n
+        Message:\n\t\t{}\n
+        '''.format(data['name'], data['email'], data['about'], data['subject'], data['message'])
+        send_mail('Tutor Me Contact Form', message, 'tutormedjango@gmail.com', ['tutormedjango@gmail.com']) 
+        messages.success(request, 'Your message has been sent successfully!')
+
+    return render(request, 'welcome/index.html', {})
 
 class selectTypeView(generic.ListView):
     template_name = 'welcome/selectType.html'
@@ -302,6 +333,7 @@ def deleteRequest(request,request_id):
 def changeTutorRate(request):
     user = request.user
     newRate = request.POST['newRate']
+
     if newRate == "":
         return render(request, 'welcome/changeRate.html', {
             'comments': User,
@@ -312,3 +344,36 @@ def changeTutorRate(request):
         user.save()
         url = '/' + request.user.email + '/tutor/'
         return HttpResponseRedirect((url))
+        
+class contactView(generic.ListView):
+    template_name = 'welcome/contact.html'
+    def get_queryset(self):
+        return 'contact success'
+
+
+# def contact(request):
+#     if request.method=='POST':
+#         name = request.POST.get('cf-name')
+#         about = request.POST.get('cf-about')
+#         email = request.POST.get('cf-email')
+#         subject = request.POST.get('cf-number')
+#         message = request.POST.get('cf-message')
+
+#         data = {
+#             'name': name,
+#             'email': email,
+#             'about': about,
+#             'subject': subject,
+#             'message': message
+#         }
+#         message = '''
+#         From:\n\t\t{}\n
+#         Email:\n\t\t{}\n
+#         About:\n\t\t{}\n
+#         Subject:\n\t\t{}\n
+#         Message:\n\t\t{}\n
+#         '''.format(data['name'], data['email'], data['about'], data['subject'], data['message'])
+#         send_mail('Tutor Me Contact Form', message, 'tutormedjango@gmail.com', ['tutormedjango@gmail.com']) 
+#         messages.success(request, 'Your message has been sent successfully!')
+
+#     return render(request, 'welcome/contact.html', {})
